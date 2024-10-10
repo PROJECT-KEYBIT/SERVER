@@ -1,13 +1,22 @@
 package com.msa.order.domain.model.vo;
 
 import lombok.Builder;
+import lombok.Getter;
 
 public class OrderLine {
 
     private Product product;
-    private Money price;
-    private int quantity;
+    @Getter private Money price;
+    @Getter private int quantity;
     private Money amounts;
+
+    public String getProductNo() {
+        return product.getProductNo();
+    }
+
+    public String getProductName() {
+        return product.getProductName();
+    }
 
     private OrderLine() {}
 
