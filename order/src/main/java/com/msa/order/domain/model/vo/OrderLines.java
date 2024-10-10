@@ -16,6 +16,10 @@ public class OrderLines {
         return new OrderLines(orderLineList);
     }
 
+    public List<OrderLine> getList() {
+        return orderLineList;
+    }
+
     private OrderLines() {}
 
     private OrderLines(List<OrderLine> orderLineList) {
