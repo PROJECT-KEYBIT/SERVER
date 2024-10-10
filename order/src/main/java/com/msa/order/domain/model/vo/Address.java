@@ -5,6 +5,13 @@ public class Address {
     private String zipcode;
     private String address;
 
+    protected String getZipcode() {
+        return zipcode;
+    }
+
+    protected String getAddress() {
+        return address;
+    }
 
     public static Address createAddress(String zipcode, String address) {
         return new Address(zipcode, address);
