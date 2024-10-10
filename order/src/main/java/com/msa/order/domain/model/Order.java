@@ -12,7 +12,7 @@ public class Order {
 
     @Getter private ShippingInfo shippingInfo;
 
-    private OrderLines orderLines;
+    @Getter private OrderLines orderLines;
 
     @Getter private OrderStatus orderStatus;
 
