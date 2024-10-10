@@ -10,6 +10,14 @@ public class Product {
         return new Product(productNo, productName);
     }
 
+    protected String getProductNo() {
+        return productNo;
+    }
+
+    protected String getProductName() {
+        return productName;
+    }
+
     private Product() {}
 
     private Product(String productNo, String productName) {
