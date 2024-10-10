@@ -1,5 +1,8 @@
 package com.msa.order.domain.model.vo;
 
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode(of = "value")
 public class Money {
 
     private int value;
