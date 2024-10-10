@@ -9,6 +9,14 @@ public class Receiver {
         return new Receiver(name, phoneNumber);
     }
 
+    protected String getName() {
+        return this.name;
+    }
+
+    protected String getPhoneNumber() {
+        return this.phoneNumber;
+    }
+
     private Receiver () {}
     private Receiver(String name, String phoneNumber) {
         this.name = name;
