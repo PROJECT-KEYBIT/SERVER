@@ -2,14 +2,19 @@ package com.msa.order.domain.model;
 
 import com.msa.order.domain.model.vo.*;
 import lombok.Builder;
+import lombok.Getter;
 
 public class Order {
 
     private OrderNo orderNo;
+
     private Orderer orderer;
-    private ShippingInfo shippingInfo;
+
+    @Getter private ShippingInfo shippingInfo;
+
     private OrderLines orderLines;
-    private OrderStatus orderStatus;
+
+    @Getter private OrderStatus orderStatus;
 
     protected Order() {}
 
@@ -22,7 +27,7 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public Money totalAmounts() {
+    public Money calculateTotalAmounts() {
         return orderLines.totalAmounts();
     }
 
@@ -42,7 +47,7 @@ public class Order {
 
     private void verifyNotYetShipped() {
         if (!orderStatus.isShippingInfoChangeable())
-            throw new AlreadyShippedException();
+            throw new AlreadyShippedException("이미 배송된 상품입니다.");
     }
 
     private void setShippingInfo(ShippingInfo shippingInfo) {
