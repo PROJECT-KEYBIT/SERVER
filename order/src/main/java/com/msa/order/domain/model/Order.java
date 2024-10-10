@@ -19,12 +19,12 @@ public class Order {
     protected Order() {}
 
     @Builder
-    private Order(Orderer orderer, ShippingInfo shippingInfo, OrderLines orderLines, OrderStatus orderStatus) {
+    private Order(Orderer orderer, ShippingInfo shippingInfo, OrderLines orderLines) {
         this.orderNo = OrderNo.createOrderNo();
         this.orderer = orderer;
         this.shippingInfo = shippingInfo;
         this.orderLines = orderLines;
-        this.orderStatus = orderStatus;
+        this.orderStatus = OrderStatus.PREPARING;
     }
 
     public Money calculateTotalAmounts() {
