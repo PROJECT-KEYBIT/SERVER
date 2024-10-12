@@ -1,7 +1,9 @@
 package com.msa.order.domain.model.vo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Embedded;
+import jakarta.persistence.Transient;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -11,11 +13,14 @@ public class OrderLine {
     @Embedded
     private Product product;
 
+    @Getter
     @Embedded
-    @Getter private Money price;
-    @Getter private int quantity;
+    private Money price;
 
-    @Embedded
+    @Getter
+    private int quantity;
+
+    @Transient
     private Money amounts;
 
     public String getProductNo() {

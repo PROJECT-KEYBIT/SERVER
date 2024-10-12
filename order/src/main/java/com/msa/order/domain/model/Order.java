@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Entity
+@Table(name = "orders")
 public class Order {
 
     @EmbeddedId

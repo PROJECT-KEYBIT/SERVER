@@ -1,5 +1,6 @@
 package com.msa.order.domain.model.vo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.EqualsAndHashCode;
 
@@ -7,6 +8,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(of = "value")
 public class Money {
 
+    @Column(name = "price")
     private int value;
 
     protected Money() {}
