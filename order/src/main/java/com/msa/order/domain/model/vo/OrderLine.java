@@ -1,13 +1,21 @@
 package com.msa.order.domain.model.vo;
 
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
 import lombok.Builder;
 import lombok.Getter;
 
+@Embeddable
 public class OrderLine {
 
+    @Embedded
     private Product product;
+
+    @Embedded
     @Getter private Money price;
     @Getter private int quantity;
+
+    @Embedded
     private Money amounts;
 
     public String getProductNo() {
@@ -18,7 +26,7 @@ public class OrderLine {
         return product.getProductName();
     }
 
-    private OrderLine() {}
+    protected OrderLine() {}
 
     @Builder
     private OrderLine(Product product, Money price, int quantity) {

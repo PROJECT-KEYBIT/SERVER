@@ -1,9 +1,9 @@
 package com.msa.order.domain.model.vo;
 
+import jakarta.persistence.Embeddable;
 import lombok.EqualsAndHashCode;
-import org.apache.kafka.common.protocol.types.Field;
-import org.aspectj.weaver.ast.Or;
 
+@Embeddable
 @EqualsAndHashCode(of = "ordererId")
 public class Orderer {
 
@@ -14,7 +14,7 @@ public class Orderer {
         return new Orderer(ordererId, ordererName);
     }
 
-    private Orderer() {}
+    protected Orderer() {}
 
     private Orderer(Long ordererId, String ordererName) {
         this.ordererId = ordererId;

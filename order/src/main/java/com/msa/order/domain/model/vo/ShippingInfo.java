@@ -1,11 +1,20 @@
 package com.msa.order.domain.model.vo;
 
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
 import lombok.Getter;
 
 @Getter
+@Embeddable
+@Access(AccessType.FIELD)
 public class ShippingInfo {
 
+    @Embedded
     private Receiver receiver;
+
+    @Embedded
     private Address address;
 
     public static ShippingInfo createShippingInfo(Receiver receiver, Address address) {
@@ -28,7 +37,7 @@ public class ShippingInfo {
         return address.getAddress();
     }
 
-    private ShippingInfo() {}
+    protected ShippingInfo() {}
     private ShippingInfo(Receiver receiver, Address address) {
         this.receiver = receiver;
         this.address = address;

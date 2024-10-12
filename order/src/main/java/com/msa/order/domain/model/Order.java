@@ -1,20 +1,30 @@
 package com.msa.order.domain.model;
 
 import com.msa.order.domain.model.vo.*;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 
+@Entity
 public class Order {
 
+    @EmbeddedId
     private OrderNo orderNo;
 
+    @Embedded
     private Orderer orderer;
 
-    @Getter private ShippingInfo shippingInfo;
+    @Getter
+    @Embedded
+    private ShippingInfo shippingInfo;
 
-    @Getter private OrderLines orderLines;
+    @Getter
+    @Embedded
+    private OrderLines orderLines;
 
-    @Getter private OrderStatus orderStatus;
+    @Getter
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 
     protected Order() {}
 

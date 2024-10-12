@@ -7,5 +7,6 @@ import java.util.List;
 public interface InquiryOrderUsecase {
 
     OrderDTO getOrder(String orderNo);
+
     List<OrderDTO> getAllOrderByOrdererId(Long ordererId);
 }
