@@ -5,6 +5,7 @@ import lombok.Setter;
 
 @Getter @Setter
 public class ChangeShippingInfoRequest {
+    private String orderNo;
     private String receiverName;
     private String phoneNumber;
     private String zipcode;
