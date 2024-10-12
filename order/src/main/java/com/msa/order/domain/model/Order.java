@@ -50,6 +50,10 @@ public class Order {
             throw new AlreadyShippedException("이미 배송된 상품입니다.");
     }
 
+    public String getOrderNo() {
+        return this.orderNo.getNo();
+    }
+
     private void setShippingInfo(ShippingInfo shippingInfo) {
         this.shippingInfo = shippingInfo;
     }

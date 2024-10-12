@@ -1,13 +1,14 @@
 package com.msa.order.domain.model.vo;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
 @EqualsAndHashCode(of = "no")
 public class OrderNo {
-    private String no;
+    @Getter private String no;
 
     private OrderNo() {}
 
