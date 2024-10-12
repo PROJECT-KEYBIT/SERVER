@@ -22,13 +22,13 @@ public class ChangeShippingInfoInputPort implements ChangeShippingInfoUsecase {
     private final OrderOutputPort orderOutputPort;
 
     @Override
-    public ChangeShippingInfoResponse changeShippingInfo(ChangeShippingInfoRequest changeShippingInfoRequest) {
+    public ChangeShippingInfoResponse changeShippingInfo(String orderNo, ChangeShippingInfoRequest changeShippingInfoRequest) {
 
         Receiver receiver = Receiver.createReceiver(changeShippingInfoRequest.getReceiverName(), changeShippingInfoRequest.getPhoneNumber());
         Address address = Address.createAddress(changeShippingInfoRequest.getZipcode(), changeShippingInfoRequest.getAddress());
         ShippingInfo shippingInfo = ShippingInfo.createShippingInfo(receiver, address);
 
-        Order order = orderOutputPort.loadOrder(changeShippingInfoRequest.getOrderNo())
+        Order order = orderOutputPort.loadOrder(orderNo)
                 .orElseThrow(() -> new NoSuchElementException("없는 주문번호입니다."));
 
         order.changeShippingInfo(shippingInfo);

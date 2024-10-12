@@ -5,5 +5,5 @@ import com.msa.order.framework.web.dto.response.ChangeShippingInfoResponse;
 
 public interface ChangeShippingInfoUsecase {
 
-    ChangeShippingInfoResponse changeShippingInfo(ChangeShippingInfoRequest changeShippingInfoRequest);
+    ChangeShippingInfoResponse changeShippingInfo(String orderNo, ChangeShippingInfoRequest changeShippingInfoRequest);
 }
