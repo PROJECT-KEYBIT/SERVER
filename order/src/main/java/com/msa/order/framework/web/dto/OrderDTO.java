@@ -1,16 +1,18 @@
-package com.msa.order.framework.web.dto.response;
+package com.msa.order.framework.web.dto;
 
 import com.msa.order.domain.model.Order;
-import com.msa.order.framework.web.dto.OrderLineDTO;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
 @Getter @Setter
-public class CreateOrderResponse {
+@NoArgsConstructor
+public class OrderDTO {
 
+    private String orderNo;
     private String receiverName;
     private String phoneNumber;
     private String zipcode;
@@ -19,7 +21,8 @@ public class CreateOrderResponse {
     private int totalAmounts;
 
     @Builder
-    public CreateOrderResponse(String receiverName, String phoneNumber, String zipcode, String address, List<OrderLineDTO> orderLineDTOList, int totalAmounts) {
+    public OrderDTO(String orderNo, String receiverName, String phoneNumber, String zipcode, String address, List<OrderLineDTO> orderLineDTOList, int totalAmounts) {
+        this.orderNo = orderNo;
         this.receiverName = receiverName;
         this.phoneNumber = phoneNumber;
         this.zipcode = zipcode;
@@ -28,13 +31,14 @@ public class CreateOrderResponse {
         this.totalAmounts = totalAmounts;
     }
 
-    public static CreateOrderResponse mapToDTO(Order order) {
+    public static OrderDTO mapToDTO(Order order) {
 
         List<OrderLineDTO> orderLineDTO = order.getOrderLines().getList().stream()
                 .map(OrderLineDTO::mapToDTO)
                 .toList();
 
-        return CreateOrderResponse.builder()
+        return OrderDTO.builder()
+                .orderNo(order.getOrderNo())
                 .receiverName(order.getShippingInfo().getReceiverName())
                 .phoneNumber(order.getShippingInfo().getPhoneNumber())
                 .zipcode(order.getShippingInfo().getZipcode())

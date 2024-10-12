@@ -6,7 +6,7 @@ import com.msa.order.domain.model.Order;
 import com.msa.order.domain.model.vo.*;
 import com.msa.order.framework.web.dto.OrderLineDTO;
 import com.msa.order.framework.web.dto.request.CreateOrderRequest;
-import com.msa.order.framework.web.dto.response.CreateOrderResponse;
+import com.msa.order.framework.web.dto.OrderDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +21,7 @@ public class CreateOrderInputPort implements CreateOrderUsecase {
     private final OrderOutputPort outputPort;
 
     @Override
-    public CreateOrderResponse createOrder(CreateOrderRequest createOrderRequest) {
+    public OrderDTO createOrder(CreateOrderRequest createOrderRequest) {
         Receiver receiver = Receiver.createReceiver(createOrderRequest.getReceiverName(), createOrderRequest.getPhoneNumber());
         Address address = Address.createAddress(createOrderRequest.getZipcode(), createOrderRequest.getAddress());
         ShippingInfo shippingInfo = ShippingInfo.createShippingInfo(receiver, address);
@@ -40,6 +40,6 @@ public class CreateOrderInputPort implements CreateOrderUsecase {
                 .orderLines(orderLines)
                 .build();
 
-        return CreateOrderResponse.mapToDTO(outputPort.save(order));
+        return OrderDTO.mapToDTO(outputPort.save(order));
     }
 }
