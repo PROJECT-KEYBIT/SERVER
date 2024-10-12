@@ -7,5 +7,5 @@ import java.util.List;
 public interface InquiryOrderUsecase {
 
     OrderDTO getOrder(String orderNo);
-    List<OrderDTO> getOrders(String userId);
+    List<OrderDTO> getOrders(Long ordererId);
 }
