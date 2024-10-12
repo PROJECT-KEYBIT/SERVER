@@ -4,5 +4,5 @@ import com.msa.order.domain.model.vo.OrderStatus;
 
 public interface OrderCancelUsecase {
 
-    OrderStatus cancel();
+    OrderStatus cancel(String orderNo);
 }
