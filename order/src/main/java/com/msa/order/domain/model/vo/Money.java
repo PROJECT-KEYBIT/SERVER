@@ -1,13 +1,15 @@
 package com.msa.order.domain.model.vo;
 
+import jakarta.persistence.Embeddable;
 import lombok.EqualsAndHashCode;
 
+@Embeddable
 @EqualsAndHashCode(of = "value")
 public class Money {
 
     private int value;
 
-    private Money() {}
+    protected Money() {}
     private Money(int value) {
         this.value = value;
     }

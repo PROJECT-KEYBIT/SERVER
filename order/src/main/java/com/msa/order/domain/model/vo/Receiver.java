@@ -1,5 +1,10 @@
 package com.msa.order.domain.model.vo;
 
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class Receiver {
     private String name;
     private String phoneNumber;
@@ -17,7 +22,7 @@ public class Receiver {
         return this.phoneNumber;
     }
 
-    private Receiver () {}
+    protected Receiver () {}
     private Receiver(String name, String phoneNumber) {
         this.name = name;
         this.phoneNumber = phoneNumber;
