@@ -39,7 +39,7 @@ public class OrderLineDTO {
         return OrderLineDTO.builder()
                 .productId(orderLine.getProductNo())
                 .productName(orderLine.getProductName())
-                .price(orderLine.getAmounts().getValue())
+                .price(orderLine.getPrice().getValue())
                 .quantity(orderLine.getQuantity())
                 .build();
     }
