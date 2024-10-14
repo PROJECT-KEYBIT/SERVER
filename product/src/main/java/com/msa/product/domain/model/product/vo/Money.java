@@ -1,4 +1,4 @@
-package com.msa.order.domain.model.vo;
+package com.msa.product.domain.model.product.vo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

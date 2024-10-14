@@ -1,5 +1,8 @@
 package com.msa.order.domain.model.vo;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class Product {
 
     private String productNo;
@@ -10,7 +13,15 @@ public class Product {
         return new Product(productNo, productName);
     }
 
-    private Product() {}
+    protected String getProductNo() {
+        return productNo;
+    }
+
+    protected String getProductName() {
+        return productName;
+    }
+
+    protected Product() {}
 
     private Product(String productNo, String productName) {
         this.productNo = productNo;

@@ -1,8 +1,16 @@
 package com.msa.order.domain.model.vo;
 
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Embeddable;
+
 import java.util.List;
 
+@Embeddable
 public class OrderLines {
+
+    @ElementCollection
+    @CollectionTable(name = "order_lines")
     private List<OrderLine> orderLineList;
 
     public Money totalAmounts() {
@@ -16,7 +24,11 @@ public class OrderLines {
         return new OrderLines(orderLineList);
     }
 
-    private OrderLines() {}
+    public List<OrderLine> getList() {
+        return orderLineList;
+    }
+
+    protected OrderLines() {}
 
     private OrderLines(List<OrderLine> orderLineList) {
         this.orderLineList = orderLineList;

@@ -1,30 +1,41 @@
 package com.msa.order.domain.model;
 
 import com.msa.order.domain.model.vo.*;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 
+@Entity
+@Table(name = "orders")
 public class Order {
 
+    @EmbeddedId
     private OrderNo orderNo;
 
+    @Embedded
     private Orderer orderer;
 
-    @Getter private ShippingInfo shippingInfo;
+    @Getter
+    @Embedded
+    private ShippingInfo shippingInfo;
 
+    @Getter
+    @Embedded
     private OrderLines orderLines;
 
-    @Getter private OrderStatus orderStatus;
+    @Getter
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 
     protected Order() {}
 
     @Builder
-    private Order(Orderer orderer, ShippingInfo shippingInfo, OrderLines orderLines, OrderStatus orderStatus) {
+    private Order(Orderer orderer, ShippingInfo shippingInfo, OrderLines orderLines) {
         this.orderNo = OrderNo.createOrderNo();
         this.orderer = orderer;
         this.shippingInfo = shippingInfo;
         this.orderLines = orderLines;
-        this.orderStatus = orderStatus;
+        this.orderStatus = OrderStatus.PREPARING;
     }
 
     public Money calculateTotalAmounts() {
@@ -48,6 +59,10 @@ public class Order {
     private void verifyNotYetShipped() {
         if (!orderStatus.isShippingInfoChangeable())
             throw new AlreadyShippedException("이미 배송된 상품입니다.");
+    }
+
+    public String getOrderNo() {
+        return this.orderNo.getNo();
     }
 
     private void setShippingInfo(ShippingInfo shippingInfo) {

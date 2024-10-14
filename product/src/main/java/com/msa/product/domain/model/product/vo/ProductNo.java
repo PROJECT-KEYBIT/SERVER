@@ -1,4 +1,4 @@
-package com.msa.order.domain.model.vo;
+package com.msa.product.domain.model.product.vo;
 
 import jakarta.persistence.Embeddable;
 import lombok.EqualsAndHashCode;
@@ -11,24 +11,25 @@ import java.util.UUID;
 
 @Embeddable
 @EqualsAndHashCode(of = "no")
-public class OrderNo implements Serializable {
+public class ProductNo implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = -4025347149735302974L;
+    private static final long serialVersionUID = 7435827638264974055L;
 
-    @Getter private String no;
+    @Getter
+    private String no;
 
-    protected OrderNo() {}
+    protected ProductNo() {}
 
-    private OrderNo(String no) {
+    private ProductNo(String no) {
         this.no = no;
     }
 
-    public static OrderNo createOrderNo() {
+    public static ProductNo createOrderNo() {
         UUID uuid = UUID.randomUUID();
         String year = String.valueOf(LocalDate.now().getYear());
         String no = year + '_' + uuid;
 
-        return new OrderNo(no);
+        return new ProductNo(no);
     }
 }
