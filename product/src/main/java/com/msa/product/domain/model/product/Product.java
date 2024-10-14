@@ -37,11 +37,11 @@ public abstract class Product {
             joinColumns = @JoinColumn(name = "product_no"))
     private Set<CategoryId> categories = new HashSet<>();
 
-    public void addStock() {
-
-    }
-
     protected Product() {}
+
+    public void addCategory(CategoryId categoryId) {
+        this.categories.add(categoryId);
+    }
 }
 
 
