@@ -1,6 +1,6 @@
-package com.msa.product.domain.model.category;
+package com.msa.product.domain.category.model;
 
-import com.msa.product.domain.model.category.vo.CategoryId;
+import com.msa.product.domain.category.model.vo.CategoryId;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

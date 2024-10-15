@@ -1,4 +1,4 @@
-package com.msa.product.domain.model.product;
+package com.msa.product.domain.product.model;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.msa.product.domain.model.product.vo;
+package com.msa.product.domain.product.model.vo;
 
 public enum ProductStatus {
 

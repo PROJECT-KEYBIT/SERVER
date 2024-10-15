@@ -1,7 +1,7 @@
-package com.msa.product.domain.model.product;
+package com.msa.product.domain.product.model;
 
-import com.msa.product.domain.model.category.vo.CategoryId;
-import com.msa.product.domain.model.product.vo.*;
+import com.msa.product.domain.category.model.vo.CategoryId;
+import com.msa.product.domain.product.model.vo.*;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
