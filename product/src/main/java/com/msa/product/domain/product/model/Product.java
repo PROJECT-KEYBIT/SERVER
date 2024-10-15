@@ -45,16 +45,6 @@ public abstract class Product {
     public void addCategory(CategoryId categoryId) {
         this.categories.add(categoryId);
     }
-
-    @Builder
-    public Product(String name, Description description, Money price, Stock stock, ProductImages images, Set<CategoryId> categories) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.stock = stock;
-        this.images = images;
-        this.categories = categories;
-    }
 }
 
 
