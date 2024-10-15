@@ -8,19 +8,20 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity @Getter
 @EqualsAndHashCode(of = "no")
 public class Category {
 
     @EmbeddedId
     private CategoryId no;
 
-    @Getter
+    @ManyToOne
+    private Category topCategory;
+
     private String name;
 
-    @Getter
-    @OneToMany
-    List<Category> subCategory = new ArrayList<>();
+    @OneToMany(mappedBy = "topCategory", cascade = CascadeType.ALL)
+    private List<Category> subCategory = new ArrayList<>();
 
     public static Category create(Long no, String name) {
         return new Category(no, name);
@@ -34,6 +35,9 @@ public class Category {
     }
 
     public void addSubCategory(Category category) {
-        subCategory.add(category);
+        getSubCategory().add(category);
+    }
+    public void removeSubCategory(Category category) {
+        getSubCategory().remove(category);
     }
 }
