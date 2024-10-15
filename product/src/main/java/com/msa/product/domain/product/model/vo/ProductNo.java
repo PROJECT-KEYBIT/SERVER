@@ -25,7 +25,7 @@ public class ProductNo implements Serializable {
         this.no = no;
     }
 
-    public static ProductNo createOrderNo() {
+    public static ProductNo createProductNo() {
         UUID uuid = UUID.randomUUID();
         String year = String.valueOf(LocalDate.now().getYear());
         String no = year + '_' + uuid;
