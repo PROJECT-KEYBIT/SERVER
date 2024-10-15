@@ -10,7 +10,7 @@ public class Stock {
     @Column(name = "stock")
     private int value;
 
-    public Stock create(int value) {
+    public static Stock create(int value) {
         return new Stock(value);
     }
 

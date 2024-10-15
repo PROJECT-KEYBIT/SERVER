@@ -13,6 +13,19 @@ public class ProductImages {
     @CollectionTable(name = "product_images")
     private List<ProductImage> productImages = new ArrayList<>();
 
+    protected ProductImages() {}
+    private ProductImages(List<ProductImage> productImages) {
+        this.productImages = productImages;
+    }
+
+    public static ProductImages empty() {
+        return new ProductImages();
+    }
+
+    public static ProductImages create(List<ProductImage> productImages) {
+        return new ProductImages(productImages);
+    }
+
     public boolean hasThumbnail() {
         for (ProductImage image : productImages)
             if (image.isThumbnail()) return true;

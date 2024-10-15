@@ -23,7 +23,7 @@ public class CategoryId implements Serializable {
         this.value = value;
     }
 
-    public CategoryId create(Long value) {
+    public static CategoryId create(Long value) {
         return new CategoryId(value);
     }
 }

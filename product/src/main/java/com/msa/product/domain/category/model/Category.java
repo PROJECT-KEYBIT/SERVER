@@ -22,6 +22,16 @@ public class Category {
     @OneToMany
     List<Category> subCategory = new ArrayList<>();
 
+    public static Category create(Long no, String name) {
+        return new Category(no, name);
+    }
+
+    protected Category() {}
+
+    private Category(Long no, String name) {
+        this.no = CategoryId.create(no);
+        this.name = name;
+    }
 
     public void addSubCategory(Category category) {
         subCategory.add(category);
