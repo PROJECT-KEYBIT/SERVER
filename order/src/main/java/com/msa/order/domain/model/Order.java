@@ -35,7 +35,7 @@ public class Order {
         this.orderer = orderer;
         this.shippingInfo = shippingInfo;
         this.orderLines = orderLines;
-        this.orderStatus = OrderStatus.PREPARING;
+        this.orderStatus = OrderStatus.PAYMENT_WAITING;
     }
 
     public Money calculateTotalAmounts() {
@@ -47,6 +47,22 @@ public class Order {
         setShippingInfo(shippingInfo);
 
         //TODO: 배송지 변경 이벤트!
+    }
+
+    public void prepare() {
+        setOrderStatus(OrderStatus.PREPARING);
+    }
+
+    public void ship() {
+        setOrderStatus(OrderStatus.SHIPPED);
+    }
+
+    public void delivery() {
+        setOrderStatus(OrderStatus.DELIVERING);
+    }
+
+    public void deliveryComplete() {
+        setOrderStatus(OrderStatus.DELIVERY_COMPLETED);
     }
 
     public void cancel() {
