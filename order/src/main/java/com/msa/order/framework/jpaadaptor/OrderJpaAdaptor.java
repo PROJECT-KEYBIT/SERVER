@@ -25,7 +25,7 @@ public class OrderJpaAdaptor implements OrderOutputPort {
     }
 
     @Override
-    public Optional<List<Order>> loadOrdersByOrderer(Long ordererId) {
+    public List<Order> loadOrdersByOrderer(Long ordererId) {
         return orderRepository.findByOrderer_OrdererId(ordererId);
     }
 }

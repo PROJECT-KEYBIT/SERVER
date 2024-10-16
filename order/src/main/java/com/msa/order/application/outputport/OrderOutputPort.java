@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface OrderOutputPort {
     Optional<Order> loadOrder(String orderId);
     Order save(Order order);
-    Optional<List<Order>> loadOrdersByOrderer(Long ordererId);
+    List<Order> loadOrdersByOrderer(Long ordererId);
 }

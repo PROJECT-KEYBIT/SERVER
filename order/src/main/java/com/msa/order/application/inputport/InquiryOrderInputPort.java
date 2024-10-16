@@ -25,10 +25,8 @@ public class InquiryOrderInputPort implements InquiryOrderUsecase {
 
     @Override
     public List<OrderDTO> getAllOrderByOrdererId(Long ordererId) {
-        return orderOutputPort.loadOrdersByOrderer(ordererId)
-                .map(orders -> orders.stream()
-                        .map(OrderDTO::mapToDTO)
-                        .toList())
-                .orElseGet(List::of);
+        return orderOutputPort.loadOrdersByOrderer(ordererId).stream()
+                .map(OrderDTO::mapToDTO)
+                .toList();
     }
 }
