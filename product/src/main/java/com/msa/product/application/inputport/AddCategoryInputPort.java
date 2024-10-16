@@ -22,6 +22,8 @@ public class AddCategoryInputPort implements AddCategoryUsecase {
                 .orElseThrow(() -> new NoSuchElementException(productNo + ": 없는 주문 번호입니다."));
 
         product.addCategory(categoryId);
+
+        outputPort.save(product);
         return categoryId;
     }
 }
