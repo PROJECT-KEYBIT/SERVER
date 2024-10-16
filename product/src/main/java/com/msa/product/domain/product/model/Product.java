@@ -56,8 +56,9 @@ public abstract class Product {
         return getImages();
     }
 
-    public void addCategory(CategoryId categoryId) {
-        getCategories().add(categoryId);
+    public void addCategory(Long categoryId) {
+        CategoryId newCategoryId = CategoryId.create(categoryId);
+        getCategories().add(newCategoryId);
     }
 
     public Stock addStock(int stock) {
