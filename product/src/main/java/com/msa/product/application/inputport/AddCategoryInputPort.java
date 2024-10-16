@@ -17,13 +17,12 @@ public class AddCategoryInputPort implements AddCategoryUsecase {
     private final ProductOutputPort outputPort;
 
     @Override
-    public Long addCategory(String productNo, Long categoryId) {
+    public String addCategory(String productNo, String categoryNo) {
         Product product = outputPort.loadProduct(productNo)
                 .orElseThrow(() -> new NoSuchElementException(productNo + ": 없는 주문 번호입니다."));
 
-        product.addCategory(categoryId);
+        product.addCategory(categoryNo);
 
-        outputPort.save(product);
-        return categoryId;
+        return categoryNo;
     }
 }

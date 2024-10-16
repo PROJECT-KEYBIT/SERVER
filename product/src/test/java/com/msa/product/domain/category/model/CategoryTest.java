@@ -12,8 +12,8 @@ public class CategoryTest {
     @Test
     void givenSubCategory_whenAddSubCategory_thenWorksFine() {
         //given
-        Category subCategory = Category.create(1L, "서브 카테고리");
-        Category topCategory = Category.create(2L, "상위 카테고리");
+        Category subCategory = Category.create("서브 카테고리");
+        Category topCategory = Category.create("상위 카테고리");
 
         //when
         topCategory.addSubCategory(subCategory);
@@ -26,8 +26,8 @@ public class CategoryTest {
     @Test
     void given_when_then() {
         //given
-        Category subCategory = Category.create(1L, "서브 카테고리");
-        Category topCategory = Category.create(2L, "상위 카테고리");
+        Category subCategory = Category.create("서브 카테고리");
+        Category topCategory = Category.create("상위 카테고리");
         topCategory.addSubCategory(subCategory);
 
         //when
@@ -35,9 +35,5 @@ public class CategoryTest {
 
         //then
         assertThat(topCategory.getSubCategory().contains(subCategory)).isFalse();
-    }
-
-    public static Category createCategory(Long no, String name) {
-        return Category.create(no, name);
     }
 }

@@ -1,6 +1,6 @@
 package com.msa.product.domain.category.model;
 
-import com.msa.product.domain.category.model.vo.CategoryId;
+import com.msa.product.domain.category.model.vo.CategoryNo;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -8,29 +8,35 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity @Getter
+@Entity
 @EqualsAndHashCode(of = "no")
 public class Category {
 
     @EmbeddedId
-    private CategoryId no;
+    private CategoryNo no;
 
     @ManyToOne
     private Category topCategory;
 
+    @Getter
     private String name;
 
+    @Getter
     @OneToMany(mappedBy = "topCategory", cascade = CascadeType.ALL)
     private List<Category> subCategory = new ArrayList<>();
 
-    public static Category create(Long no, String name) {
-        return new Category(no, name);
+    public static Category create(String name) {
+        return new Category(name);
+    }
+
+    public String getNo() {
+        return this.no.getNo();
     }
 
     protected Category() {}
 
-    private Category(Long no, String name) {
-        this.no = CategoryId.create(no);
+    private Category(String name) {
+        this.no = CategoryNo.create();
         this.name = name;
     }
 

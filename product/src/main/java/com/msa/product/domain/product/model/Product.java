@@ -1,6 +1,6 @@
 package com.msa.product.domain.product.model;
 
-import com.msa.product.domain.category.model.vo.CategoryId;
+import com.msa.product.domain.category.model.vo.CategoryNo;
 import com.msa.product.domain.product.model.vo.*;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -42,7 +42,7 @@ public abstract class Product {
     @ElementCollection
     @CollectionTable(name = "product_category",
             joinColumns = @JoinColumn(name = "product_no"))
-    private Set<CategoryId> categories = new HashSet<>();
+    private Set<CategoryNo> categories = new HashSet<>();
 
     @Getter
     @Builder.Default
@@ -56,9 +56,9 @@ public abstract class Product {
         return getImages();
     }
 
-    public void addCategory(Long categoryId) {
-        CategoryId newCategoryId = CategoryId.create(categoryId);
-        getCategories().add(newCategoryId);
+    public void addCategory(String categoryNo) {
+        CategoryNo newCategoryNo = CategoryNo.get(categoryNo);
+        getCategories().add(newCategoryNo);
     }
 
     public int addStock(int stock) {
@@ -68,11 +68,11 @@ public abstract class Product {
         return getStock().getValue();
     }
 
-    public Stock minusStock(int stock) {
+    public int minusStock(int stock) {
         Stock minusRequestStock = Stock.create(stock);
         Stock newMinusedStock = getStock().minus(minusRequestStock);
         setStock(newMinusedStock);
-        return getStock();
+        return getStock().getValue();
     }
 
     public Stock changeStock(int stock) {
@@ -105,7 +105,7 @@ public abstract class Product {
         this.stock = stock;
     }
 
-    public Set<CategoryId> getCategories() {
+    public Set<CategoryNo> getCategories() {
         return categories;
     }
 }

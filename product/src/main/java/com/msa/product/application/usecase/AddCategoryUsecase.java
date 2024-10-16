@@ -4,5 +4,5 @@ import java.util.Set;
 
 public interface AddCategoryUsecase {
 
-    Long addCategory(String productNo, Long categoryId);
+    String addCategory(String productNo, String categoryNo);
 }
