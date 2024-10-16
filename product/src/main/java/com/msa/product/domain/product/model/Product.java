@@ -61,7 +61,7 @@ public abstract class Product {
         getCategories().add(newCategoryId);
     }
 
-    public int addStock(int stock) {
+    public int addSt정ock(int stock) {
         Stock addRequestStock = Stock.create(stock);
         Stock newAddedStock = getStock().add(addRequestStock);
         setStock(newAddedStock);
