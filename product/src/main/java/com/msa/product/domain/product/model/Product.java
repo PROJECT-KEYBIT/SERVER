@@ -61,11 +61,11 @@ public abstract class Product {
         getCategories().add(newCategoryId);
     }
 
-    public Stock addStock(int stock) {
+    public int addStock(int stock) {
         Stock addRequestStock = Stock.create(stock);
         Stock newAddedStock = getStock().add(addRequestStock);
         setStock(newAddedStock);
-        return getStock();
+        return getStock().getValue();
     }
 
     public Stock minusStock(int stock) {
