@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,6 +33,7 @@ public abstract class Product {
     @Embedded
     private Stock stock;
 
+    @Getter
     @Embedded
     @Builder.Default
     private ProductImages images = ProductImages.empty();
@@ -49,20 +51,33 @@ public abstract class Product {
 
     protected Product() {}
 
+    public ProductImages changeProductImages(List<ProductImage> productImages) {
+        getImages().changeProductImageList(productImages);
+        return getImages();
+    }
+
     public void addCategory(CategoryId categoryId) {
         getCategories().add(categoryId);
     }
 
-    public void addStock(int stock) {
+    public Stock addStock(int stock) {
         Stock addRequestStock = Stock.create(stock);
         Stock newAddedStock = getStock().add(addRequestStock);
         setStock(newAddedStock);
+        return getStock();
     }
 
-    public void minusStock(int stock) {
+    public Stock minusStock(int stock) {
         Stock minusRequestStock = Stock.create(stock);
         Stock newMinusedStock = getStock().minus(minusRequestStock);
         setStock(newMinusedStock);
+        return getStock();
+    }
+
+    public Stock changeStock(int stock) {
+        Stock changeRequestStock = Stock.create(stock);
+        setStock(changeRequestStock);
+        return getStock();
     }
 
     public void preparing() {
