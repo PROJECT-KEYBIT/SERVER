@@ -26,6 +26,13 @@ public class ProductImages {
         return new ProductImages(productImages);
     }
 
+    public List<ProductImage> changeProductImageList(List<ProductImage> productImages) {
+        getProductImages().clear();
+        setProductImages(productImages);
+
+        return getProductImages();
+    }
+
     public boolean hasThumbnail() {
         for (ProductImage image : productImages)
             if (image.isThumbnail()) return true;
@@ -38,5 +45,13 @@ public class ProductImages {
                 .filter(ProductImage::isThumbnail)
                 .findFirst()
                 .orElse(ProductImage.create("DEFAULT_IMAGE", false));
+    }
+
+    public List<ProductImage> getProductImages() {
+        return productImages;
+    }
+
+    private void setProductImages(List<ProductImage> productImages) {
+        this.productImages = productImages;
     }
 }
