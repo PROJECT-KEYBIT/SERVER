@@ -21,9 +21,6 @@ public class AddStockInputPort implements AddStockUsecase {
         Product product = outputPort.loadProduct(productNo)
                 .orElseThrow(() -> new NoSuchElementException(productNo + ": 없는 주문 번호입니다."));
 
-        int newStock = product.addStock(stock);
-
-        outputPort.save(product);
-        return newStock;
+        return product.addStock(stock);
     }
 }
