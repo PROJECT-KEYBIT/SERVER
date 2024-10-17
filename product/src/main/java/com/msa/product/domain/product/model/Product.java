@@ -51,9 +51,8 @@ public abstract class Product {
 
     protected Product() {}
 
-    public ProductImages changeProductImages(List<ProductImage> productImages) {
+    public void changeProductImages(List<ProductImage> productImages) {
         getImages().changeProductImageList(productImages);
-        return getImages();
     }
 
     public void addCategory(String categoryNo) {
