@@ -16,7 +16,7 @@ public class OrderJpaAdaptor implements OrderOutputPort {
 
     @Override
     public Optional<Order> loadOrder(String orderId) {
-        return orderRepository.findByOrderNo_No(orderId);
+        return orderRepository.findById(orderId);
     }
 
     @Override
