@@ -74,10 +74,10 @@ public abstract class Product {
         return getStock().getValue();
     }
 
-    public Stock changeStock(int stock) {
+    public int changeStock(int stock) {
         Stock changeRequestStock = Stock.create(stock);
         setStock(changeRequestStock);
-        return getStock();
+        return getStock().getValue();
     }
 
     public void preparing() {
