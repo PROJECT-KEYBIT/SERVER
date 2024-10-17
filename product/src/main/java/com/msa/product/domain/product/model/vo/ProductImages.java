@@ -14,8 +14,21 @@ public class ProductImages {
     private List<ProductImage> productImages = new ArrayList<>();
 
     protected ProductImages() {}
+
     private ProductImages(List<ProductImage> productImages) {
+        long count = productImages.stream()
+                .filter(ProductImage::isThumbnail)
+                .count();
+
+        checkIfRepresentImageIsLargerLimitCount(count);
+
         this.productImages = productImages;
+    }
+
+    private void checkIfRepresentImageIsLargerLimitCount(long count) {
+        int REPRESENT_IMAGE_LIMIT_COUNT = 1;
+        if (count > REPRESENT_IMAGE_LIMIT_COUNT)
+            throw new IllegalArgumentException("대표 이미지 개수 " + count + "가 허용 개수 " + REPRESENT_IMAGE_LIMIT_COUNT + " 보다 큽니다.");
     }
 
     public static ProductImages empty() {
