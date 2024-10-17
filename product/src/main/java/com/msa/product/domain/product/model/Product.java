@@ -60,6 +60,11 @@ public abstract class Product {
         getCategories().add(newCategoryNo);
     }
 
+    public void removeCategory(String categoryNo) {
+        CategoryNo no = CategoryNo.get(categoryNo);
+        getCategories().remove(no);
+    }
+
     public int addStock(int stock) {
         Stock addRequestStock = Stock.create(stock);
         Stock newAddedStock = getStock().add(addRequestStock);
