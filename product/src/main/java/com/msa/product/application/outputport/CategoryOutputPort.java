@@ -11,6 +11,5 @@ public interface CategoryOutputPort {
 
     Optional<Category> loadCategory(String categoryNo);
     Category save(Category category);
-
     List<Category> loadSubCategoryById(String categoryNo);
 }
