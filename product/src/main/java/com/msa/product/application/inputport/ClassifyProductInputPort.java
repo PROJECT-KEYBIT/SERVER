@@ -25,4 +25,12 @@ public class ClassifyProductInputPort implements ClassifyProductUsecase {
 
         return categoryNo;
     }
+
+    @Override
+    public void removeCategory(String productNo, String categoryNo) {
+        Product product = outputPort.loadProduct(productNo)
+                .orElseThrow(() -> new NoSuchElementException(productNo + ": 없는 주문 번호입니다."));
+
+        product.removeCategory(categoryNo);
+    }
 }
