@@ -47,7 +47,7 @@ public abstract class Product {
     @Getter
     @Builder.Default
     @Enumerated(EnumType.STRING)
-    private ProductStatus status = ProductStatus.PREPARING;
+    private ProductStatus productStatus = ProductStatus.PREPARING;
 
     protected Product() {}
 
@@ -86,19 +86,19 @@ public abstract class Product {
     }
 
     public void preparing() {
-        this.status = ProductStatus.PREPARING;
+        this.productStatus = ProductStatus.PREPARING;
     }
 
     public void sale() {
-        this.status = ProductStatus.SALE;
+        this.productStatus = ProductStatus.SALE;
     }
 
     private void soldOut() {
-        this.status = ProductStatus.SOLD_OUT;
+        this.productStatus = ProductStatus.SOLD_OUT;
     }
 
     public void cancel() {
-        this.status = ProductStatus.CANCEL;
+        this.productStatus = ProductStatus.CANCEL;
     }
 
     public Stock getStock() {

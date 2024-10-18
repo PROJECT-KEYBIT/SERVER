@@ -1,5 +1,6 @@
 package com.msa.product.domain.product.model.vo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import lombok.Getter;
 @EqualsAndHashCode(of = "value")
 public class Stock {
 
+    @Column(name = "stock")
     private int value;
 
     public static Stock create(int value) {
