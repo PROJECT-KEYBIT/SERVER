@@ -26,18 +26,4 @@ public class CreateCategoryInputPort implements CreateCategoryUsecase {
         Category savedCategory = outputPort.save(creatdeCategory);
         return CreateCategoryResponse.mapToDTO(savedCategory);
     }
-
-    @Override
-    public List<CategoryDTO> addSubCategory(String categoryNo, CreateCategoryRequest subCategory) {
-        Category category = outputPort.loadCategory(categoryNo)
-                .orElseThrow(() -> new NoSuchElementException(categoryNo + ": 없는 카테고리 아이디입니다."));
-
-        Category createdSubCategory = Category.create(subCategory.name());
-
-        category.addSubCategory(createdSubCategory);
-
-        return category.getSubCategory().stream()
-                .map(CategoryDTO::mapToDTO)
-                .toList();
-    }
 }

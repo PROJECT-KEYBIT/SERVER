@@ -9,5 +9,4 @@ import java.util.List;
 public interface CreateCategoryUsecase {
 
     CreateCategoryResponse createCategory(CreateCategoryRequest createCategoryRequest);
-    List<CategoryDTO> addSubCategory(String categoryNo, CreateCategoryRequest subCategory);
 }
