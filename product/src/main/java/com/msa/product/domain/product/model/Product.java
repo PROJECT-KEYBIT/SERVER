@@ -10,12 +10,10 @@ import lombok.experimental.SuperBuilder;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
-@SuperBuilder
-@DiscriminatorColumn
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Product {
+public class Product {
 
     @EmbeddedId
     private final ProductNo productNo = ProductNo.createProductNo();
@@ -38,6 +36,7 @@ public abstract class Product {
     @Builder.Default
     private ProductImages images = ProductImages.empty();
 
+
     @Builder.Default
     @ElementCollection
     @CollectionTable(name = "product_category",
@@ -51,18 +50,15 @@ public abstract class Product {
 
     protected Product() {}
 
+    public void changeCategories(List<String> categoryNos) {
+        Set<CategoryNo> categoryNoList = categoryNos.stream()
+                .map(CategoryNo::get)
+                .collect(Collectors.toUnmodifiableSet());
+
+        setCategories(categoryNoList);
+    }
     public void changeProductImages(List<ProductImage> productImages) {
         getImages().changeProductImageList(productImages);
-    }
-
-    public void addCategory(String categoryNo) {
-        CategoryNo newCategoryNo = CategoryNo.get(categoryNo);
-        getCategories().add(newCategoryNo);
-    }
-
-    public void removeCategory(String categoryNo) {
-        CategoryNo no = CategoryNo.get(categoryNo);
-        getCategories().remove(no);
     }
 
     public int addStock(int stock) {
@@ -85,6 +81,14 @@ public abstract class Product {
         return getStock().getValue();
     }
 
+    public Stock getStock() {
+        return stock;
+    }
+
+    public Set<CategoryNo> getCategories() {
+        return categories;
+    }
+
     public void preparing() {
         this.productStatus = ProductStatus.PREPARING;
     }
@@ -101,16 +105,12 @@ public abstract class Product {
         this.productStatus = ProductStatus.CANCEL;
     }
 
-    public Stock getStock() {
-        return stock;
-    }
-
     private void setStock(Stock stock) {
         this.stock = stock;
     }
 
-    public Set<CategoryNo> getCategories() {
-        return categories;
+    private void setCategories(Set<CategoryNo> categories) {
+        this.categories = categories;
     }
 }
 

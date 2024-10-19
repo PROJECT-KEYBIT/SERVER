@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -17,20 +18,11 @@ public class ClassifyProductInputPort implements ClassifyProductUsecase {
     private final ProductOutputPort outputPort;
 
     @Override
-    public String addCategory(String productNo, String categoryNo) {
+    public List<String> changeCategory(String productNo, List<String> categoryIds) {
         Product product = outputPort.loadProduct(productNo)
                 .orElseThrow(() -> new NoSuchElementException(productNo + ": 없는 주문 번호입니다."));
 
-        product.addCategory(categoryNo);
-
-        return categoryNo;
-    }
-
-    @Override
-    public void removeCategory(String productNo, String categoryNo) {
-        Product product = outputPort.loadProduct(productNo)
-                .orElseThrow(() -> new NoSuchElementException(productNo + ": 없는 주문 번호입니다."));
-
-        product.removeCategory(categoryNo);
+        product.changeCategories(categoryIds);
+        return categoryIds;
     }
 }
