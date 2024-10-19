@@ -15,11 +15,14 @@ public class Category {
     @EmbeddedId
     private CategoryNo no;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Category topCategory;
 
     @Getter
     private String name;
+
+    @Getter
+    private int depth = 0;
 
     @Getter
     @OneToMany(mappedBy = "topCategory", cascade = CascadeType.ALL)
@@ -42,8 +45,19 @@ public class Category {
 
     public void addSubCategory(Category category) {
         getSubCategory().add(category);
+        category.setTopCategory(this);
     }
+
     public void removeSubCategory(Category category) {
         getSubCategory().remove(category);
+    }
+
+    private void setTopCategory(Category topCategory) {
+        this.setDepth(topCategory.getDepth() + 1);
+        this.topCategory = topCategory;
+    }
+
+    private void setDepth(int depth) {
+        this.depth = depth;
     }
 }
