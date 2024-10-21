@@ -1,8 +1,11 @@
-package com.keybit.bestproduct.domain.model;
+package com.keybit.bestproduct.domain.model.entity;
+
+import lombok.Getter;
 
 import java.io.Serial;
 import java.io.Serializable;
 
+@Getter
 public class Item implements Serializable {
     @Serial
     private static final long serialVersionUID = -8583402381356475091L;
@@ -10,7 +13,7 @@ public class Item implements Serializable {
     private Integer no;
     private String title;
 
-    public Item create(int no, String title) {
+    public static Item create(int no, String title) {
         return new Item(no, title);
     }
 

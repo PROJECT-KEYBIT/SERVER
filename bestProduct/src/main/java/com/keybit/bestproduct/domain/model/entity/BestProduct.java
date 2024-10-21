@@ -1,16 +1,22 @@
-package com.keybit.bestproduct.domain.model;
+package com.keybit.bestproduct.domain.model.entity;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.UUID;
 
-public class bestProduct {
+@Document
+public class BestProduct {
+
+    @Id
     private String id;
     private Item item;
     private long salesVolume;
 
 
-    public bestProduct register(Item item) {
+    public static BestProduct register(Item item) {
         UUID uuid = UUID.randomUUID();
-        return new bestProduct(uuid.toString(), item, 1L);
+        return new BestProduct(uuid.toString(), item, 1L);
     }
 
     public Long increaseSalesVolume() {
@@ -19,7 +25,7 @@ public class bestProduct {
         return getSalesVolume();
     }
 
-    private bestProduct(String id, Item item, long salesVolume) {
+    private BestProduct(String id, Item item, long salesVolume) {
         this.id = id;
         this.item = item;
         this.salesVolume = salesVolume;
