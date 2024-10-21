@@ -1,8 +1,10 @@
 package com.msa.order.application.inputport;
 
+import com.msa.order.application.outputport.EventOutputPort;
 import com.msa.order.application.outputport.OrderOutputPort;
 import com.msa.order.application.usecase.ChangeShippingInfoUsecase;
 import com.msa.order.domain.model.Order;
+import com.msa.order.domain.model.event.ShippingInfoChanged;
 import com.msa.order.domain.model.vo.Address;
 import com.msa.order.domain.model.vo.Receiver;
 import com.msa.order.domain.model.vo.ShippingInfo;
@@ -20,6 +22,7 @@ import java.util.NoSuchElementException;
 public class ChangeShippingInfoInputPort implements ChangeShippingInfoUsecase {
 
     private final OrderOutputPort orderOutputPort;
+    private final EventOutputPort eventOutputPort;
 
     @Override
     public ChangeShippingInfoResponse changeShippingInfo(String orderNo, ChangeShippingInfoRequest changeShippingInfoRequest) {
@@ -32,6 +35,10 @@ public class ChangeShippingInfoInputPort implements ChangeShippingInfoUsecase {
                 .orElseThrow(() -> new NoSuchElementException("없는 주문번호입니다."));
 
         order.changeShippingInfo(shippingInfo);
-        return ChangeShippingInfoResponse.mapToDTO(order.getOrderNo(), order.getShippingInfo());
+
+        ShippingInfoChanged shippingIngoChangedEvent = Order.createShippingIngoChangedEvent(order.getOrderNo(), order.getShippingInfo());
+        eventOutputPort.occurShippingInfoChangedEvent(shippingIngoChangedEvent);
+
+        return ChangeShippingInfoResponse.mapToDTO(order.getNo(), order.getShippingInfo());
     }
 }
