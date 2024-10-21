@@ -38,7 +38,7 @@ public class OrderDTO {
                 .toList();
 
         return OrderDTO.builder()
-                .orderNo(order.getOrderNo())
+                .orderNo(order.getNo())
                 .receiverName(order.getShippingInfo().getReceiverName())
                 .phoneNumber(order.getShippingInfo().getPhoneNumber())
                 .zipcode(order.getShippingInfo().getZipcode())

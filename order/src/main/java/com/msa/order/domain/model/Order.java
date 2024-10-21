@@ -1,5 +1,8 @@
 package com.msa.order.domain.model;
 
+import com.msa.order.domain.model.event.OrderCanceled;
+import com.msa.order.domain.model.event.OrderCompleted;
+import com.msa.order.domain.model.event.ShippingInfoChanged;
 import com.msa.order.domain.model.vo.*;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -9,9 +12,11 @@ import lombok.Getter;
 @Table(name = "orders")
 public class Order {
 
+    @Getter
     @EmbeddedId
     private OrderNo orderNo;
 
+    @Getter
     @Embedded
     private Orderer orderer;
 
@@ -77,7 +82,7 @@ public class Order {
             throw new AlreadyShippedException("이미 배송된 상품입니다.");
     }
 
-    public String getOrderNo() {
+    public String getNo() {
         return this.orderNo.getNo();
     }
 
@@ -87,5 +92,17 @@ public class Order {
 
     private void setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public static OrderCanceled createOrderCanceledEvent(Orderer orderer, OrderLines orderLines) {
+        return new OrderCanceled(orderer, orderLines);
+    }
+
+    public static OrderCompleted createOrderCompletedEvent(Orderer orderer, OrderLines orderLines) {
+        return new OrderCompleted(orderer, orderLines);
+    }
+
+    public static ShippingInfoChanged createShippingIngoChangedEvent(OrderNo orderNo, ShippingInfo shippingInfo) {
+        return new ShippingInfoChanged(orderNo, shippingInfo);
     }
 }
