@@ -27,7 +27,7 @@ public class OrderCancelInputPort implements OrderCancelUsecase {
 
         order.cancel();
 
-        OrderCanceled orderCanceledEvent = Order.createOrderCanceledEvent(order.getOrderer(), order.getOrderLines());
+        OrderCanceled orderCanceledEvent = Order.createOrderCanceledEvent(order.getOrderer(), order.getOrderLines().getList());
         eventOutputPort.occurOrderCancelEvent(orderCanceledEvent);
 
         return order.getOrderStatus();

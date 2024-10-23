@@ -8,6 +8,8 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -94,8 +96,8 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public static OrderCanceled createOrderCanceledEvent(Orderer orderer, OrderLines orderLines) {
-        return new OrderCanceled(orderer, orderLines);
+    public static OrderCanceled createOrderCanceledEvent(Orderer orderer, List<OrderLine> orderLineList) {
+        return new OrderCanceled(orderer, orderLineList);
     }
 
     public static OrderCompleted createOrderCompletedEvent(Orderer orderer, OrderLines orderLines) {
