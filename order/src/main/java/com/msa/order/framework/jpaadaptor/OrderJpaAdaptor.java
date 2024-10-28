@@ -2,6 +2,7 @@ package com.msa.order.framework.jpaadaptor;
 
 import com.msa.order.application.outputport.OrderOutputPort;
 import com.msa.order.domain.model.Order;
+import com.msa.order.domain.model.vo.OrderNo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -15,8 +16,8 @@ public class OrderJpaAdaptor implements OrderOutputPort {
     private final OrderRepository orderRepository;
 
     @Override
-    public Optional<Order> loadOrder(String orderId) {
-        return orderRepository.findById(orderId);
+    public Optional<Order> loadOrder(OrderNo orderNo) {
+        return orderRepository.findById(orderNo);
     }
 
     @Override
