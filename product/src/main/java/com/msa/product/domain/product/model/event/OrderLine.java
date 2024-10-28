@@ -2,14 +2,13 @@ package com.msa.product.domain.product.model.event;
 
 import lombok.Getter;
 
+@Getter
 public class OrderLine {
 
     private Product product;
 
-    @Getter
     private Money price;
 
-    @Getter
     private int quantity;
 
     public String getProductNo() {

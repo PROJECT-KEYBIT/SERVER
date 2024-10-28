@@ -1,7 +1,9 @@
 package com.msa.product.domain.product.model.event;
 
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
+@Getter
 @EqualsAndHashCode(of = "value")
 public class Money {
 

@@ -2,7 +2,9 @@ package com.msa.product.domain.product.model.event;
 
 import jakarta.persistence.Access;
 import jakarta.persistence.AccessType;
+import lombok.Getter;
 
+@Getter
 @Access(AccessType.FIELD)
 public class Product {
 
