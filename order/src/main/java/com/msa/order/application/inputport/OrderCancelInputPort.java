@@ -5,6 +5,7 @@ import com.msa.order.application.outputport.OrderOutputPort;
 import com.msa.order.application.usecase.OrderCancelUsecase;
 import com.msa.order.domain.model.Order;
 import com.msa.order.domain.model.event.OrderCanceled;
+import com.msa.order.domain.model.vo.OrderNo;
 import com.msa.order.domain.model.vo.OrderStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class OrderCancelInputPort implements OrderCancelUsecase {
 
     @Override
     public OrderStatus cancel(String orderNo) {
-        Order order = orderOutputPort.loadOrder(orderNo)
+        Order order = orderOutputPort.loadOrder(OrderNo.get(orderNo))
                 .orElseThrow(() -> new NoSuchElementException("없는 주문 번호입니다."));
 
         order.cancel();
