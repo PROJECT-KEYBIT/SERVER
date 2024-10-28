@@ -19,7 +19,7 @@ public class KeyboardTest {
         Description desc = Description.create("desc");
         Money money = Money.createMoney(100);
         Stock stock = Stock.create(1000);
-        Keyboard keyboard = createKeyboard(name, desc, money, stock);
+        Product keyboard = Product.create(name, desc, money, stock);
 
         int minusRequest = 20;
 
@@ -39,7 +39,7 @@ public class KeyboardTest {
         Description desc = Description.create("desc");
         Money money = Money.createMoney(100);
         Stock stock = Stock.create(10);
-        Keyboard keyboard = createKeyboard(name, desc, money, stock);
+        Product keyboard = Product.create(name, desc, money, stock);
 
         int minusRequest = 20;
 
@@ -59,21 +59,12 @@ public class KeyboardTest {
         Stock stock = Stock.create(1000);
 
         //when
-        Keyboard keyboard = createKeyboard(name, desc, money, stock);
+        Product keyboard = Product.create(name, desc, money, stock);
 
         //then
         assertThat(keyboard)
                 .hasFieldOrPropertyWithValue("name", "keyboard")
                 .hasFieldOrPropertyWithValue("description", desc)
                 .hasFieldOrPropertyWithValue("stock", stock);
-    }
-
-    public static Keyboard createKeyboard(String keyboard, Description desc, Money money, Stock stock) {
-        return Keyboard.builder()
-                .name(keyboard)
-                .description(desc)
-                .price(money)
-                .stock(stock)
-                .build();
     }
 }

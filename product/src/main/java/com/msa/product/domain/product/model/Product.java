@@ -50,6 +50,17 @@ public class Product {
 
     protected Product() {}
 
+    private Product(String name, Description description, Money price, Stock stock) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stock = stock;
+    }
+
+    public static Product create(String name, Description description, Money price, Stock stock) {
+        return new Product(name, description, price, stock);
+    }
+
     public void changeCategories(List<String> categoryNos) {
         Set<CategoryNo> categoryNoList = categoryNos.stream()
                 .map(CategoryNo::get)
