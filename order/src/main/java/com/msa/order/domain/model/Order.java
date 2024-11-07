@@ -1,5 +1,6 @@
 package com.msa.order.domain.model;
 
+import com.msa.order.common.event.Events;
 import com.msa.order.domain.model.event.OrderCanceled;
 import com.msa.order.domain.model.event.OrderCompleted;
 import com.msa.order.domain.model.event.ShippingInfoChanged;
@@ -7,8 +8,6 @@ import com.msa.order.domain.model.vo.*;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
-
-import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -53,7 +52,9 @@ public class Order {
         verifyNotYetShipped();
         setShippingInfo(shippingInfo);
 
-        //TODO: 배송지 변경 이벤트!
+        Events.publishShippingInfoChange(
+                new ShippingInfoChanged(getOrderNo(), getShippingInfo())
+        );
     }
 
     public void prepare() {
@@ -76,7 +77,9 @@ public class Order {
         verifyNotYetShipped();
         setOrderStatus(OrderStatus.CANCELED);
 
-        //TODO: 주문 취소 이벤트!
+        Events.publishOrderCancel(
+                new OrderCanceled(getOrderer(), getOrderLines().getList())
+        );
     }
 
     private void verifyNotYetShipped() {
@@ -96,15 +99,7 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public static OrderCanceled createOrderCanceledEvent(Orderer orderer, List<OrderLine> orderLineList) {
-        return new OrderCanceled(orderer, orderLineList);
-    }
-
     public static OrderCompleted createOrderCompletedEvent(Orderer orderer, OrderLines orderLines) {
         return new OrderCompleted(orderer, orderLines);
-    }
-
-    public static ShippingInfoChanged createShippingIngoChangedEvent(OrderNo orderNo, ShippingInfo shippingInfo) {
-        return new ShippingInfoChanged(orderNo, shippingInfo);
     }
 }

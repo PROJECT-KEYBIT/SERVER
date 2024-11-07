@@ -37,9 +37,6 @@ public class ChangeShippingInfoInputPort implements ChangeShippingInfoUsecase {
 
         order.changeShippingInfo(shippingInfo);
 
-        ShippingInfoChanged shippingIngoChangedEvent = Order.createShippingIngoChangedEvent(order.getOrderNo(), order.getShippingInfo());
-        eventOutputPort.occurShippingInfoChangedEvent(shippingIngoChangedEvent);
-
         return ChangeShippingInfoResponse.mapToDTO(order.getNo(), order.getShippingInfo());
     }
 }
