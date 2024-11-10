@@ -24,7 +24,8 @@ public class Member {
     @Embedded
     private Email email;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
+    @ElementCollection
     private Set<UserRole> roles = new HashSet<>();
 
     public static Member registerMember(String id, String name, String password, String email) {
