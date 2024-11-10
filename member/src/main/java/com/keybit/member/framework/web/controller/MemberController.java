@@ -18,7 +18,7 @@ public class MemberController {
     private final AddMemberUsecase addMemberUsecase;
     private final InquiryMemberUsecase inquiryMemberUsecase;
 
-    @PostMapping("/member")
+    @PostMapping("/member/join")
     public ResponseEntity<MemberDTO> createMember(
             @RequestBody SignUpInfo signUpInfo
     ) {
