@@ -22,4 +22,9 @@ public class MemberJpaAdaptor implements MemberOutputPort {
     public Member save(Member member) {
         return memberRepository.save(member);
     }
+
+    @Override
+    public Optional<Member> loadMemberById(String memberId) {
+        return memberRepository.findByIdName_Id(memberId);
+    }
 }

@@ -10,4 +10,6 @@ public interface MemberOutputPort {
 
     Optional<Member> loadMember(Long memberNo);
     Member save(Member member);
+
+    Optional<Member> loadMemberById(String memberId);
 }
