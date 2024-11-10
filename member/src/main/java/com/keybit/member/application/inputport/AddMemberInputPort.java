@@ -6,6 +6,7 @@ import com.keybit.member.domain.model.Member;
 import com.keybit.member.framework.web.dto.MemberDTO;
 import com.keybit.member.framework.web.dto.request.SignUpInfo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class AddMemberInputPort implements AddMemberUsecase {
 
     private final MemberOutputPort outputPort;
-
     @Override
     public MemberDTO createMember(SignUpInfo signUpInfo) {
         Member member = Member.registerMember(
