@@ -2,10 +2,12 @@ package com.keybit.member.common.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.keybit.member.framework.web.dto.request.LoginMemberRequest;
+import com.keybit.member.framework.web.dto.security.UserPrincipal;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
@@ -16,7 +18,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.util.StreamUtils;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
+@Slf4j
 @RequiredArgsConstructor
 public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -31,7 +35,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
     private UsernamePasswordAuthenticationToken createAuthenticationToken(HttpServletRequest request) {
         LoginMemberRequest loginDto = convertTo(request, LoginMemberRequest.class);
-        return new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword(), null);
+        return new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword(), new ArrayList<>());
     }
 
     private <T> T convertTo(HttpServletRequest request, Class<T> valueType) {
@@ -52,11 +56,12 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) {
-
+        UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
+        log.info("user: [{}]", principal);
     }
 
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) {
-
+        log.info("로그인 실패!");
     }
 }
