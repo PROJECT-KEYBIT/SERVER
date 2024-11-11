@@ -18,10 +18,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import java.util.NoSuchElementException;
 
 @Configuration
 @RequiredArgsConstructor
@@ -53,7 +52,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+    public PasswordEncoder passwordEncoder () {
         return new BCryptPasswordEncoder();
     }
 
@@ -68,7 +67,12 @@ public class SecurityConfig {
             Member member = outputPort.loadMemberById(username)
                     .orElseThrow(() -> new UsernameNotFoundException(username + " 없는 아이디입니다."));
 
-            AuthenticatedAccount authenticatedAccount = objectMapper.convertValue(member, AuthenticatedAccount.class);
+            AuthenticatedAccount authenticatedAccount = AuthenticatedAccount.builder()
+                    .memId(member.getId())
+                    .password(member.getPassword())
+                    .roles(member.getRoles())
+                    .build();
+
             return new UserPrincipal(authenticatedAccount);
         };
     }
