@@ -2,6 +2,7 @@ package com.keybit.member.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.keybit.member.application.outputport.MemberOutputPort;
+import com.keybit.member.common.jwt.JwtIssuer;
 import com.keybit.member.common.jwt.LoginFilter;
 import com.keybit.member.domain.model.Member;
 import com.keybit.member.framework.web.dto.security.AuthenticatedAccount;
@@ -29,6 +30,7 @@ public class SecurityConfig {
     private final AuthenticationConfiguration authenticationConfiguration;
     private final MemberOutputPort outputPort;
     private final ObjectMapper objectMapper;
+    private final JwtIssuer jwtIssuer;
 
     private final String[] notLoggedAllowPage = new String[]{
             "/login",
@@ -46,7 +48,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
-                .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration), objectMapper), UsernamePasswordAuthenticationFilter.class);
+                .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration), objectMapper, jwtIssuer), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

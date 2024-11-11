@@ -26,11 +26,17 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
     private final ObjectMapper objectMapper;
+    private final JwtIssuer jwtIssuer;
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
         checkRequestContentType(request);
         return authenticationManager.authenticate(createAuthenticationToken(request));
+    }
+
+    private static void checkRequestContentType(HttpServletRequest request) {
+        if(request.getContentType() == null || !request.getContentType().equals(MediaType.APPLICATION_JSON_VALUE))
+            throw new AuthenticationServiceException("Authentication Content-Type not supported: " + request.getContentType());
     }
 
     private UsernamePasswordAuthenticationToken createAuthenticationToken(HttpServletRequest request) {
@@ -49,15 +55,14 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         return t;
     }
 
-    private static void checkRequestContentType(HttpServletRequest request) {
-        if(request.getContentType() == null || !request.getContentType().equals(MediaType.APPLICATION_JSON_VALUE))
-            throw new AuthenticationServiceException("Authentication Content-Type not supported: " + request.getContentType());
-    }
-
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) {
         UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
-        log.info("user: [{}]", principal);
+        String token = jwtIssuer.issue(principal.getUsername(),
+                                       principal.getAccount().getRoles());
+
+        response.addHeader("token", token);
+        response.addHeader("userId", principal.getUsername());
     }
 
     @Override
