@@ -5,6 +5,7 @@ import com.keybit.member.domain.model.vo.IDName;
 import com.keybit.member.domain.model.vo.Password;
 import com.keybit.member.domain.model.vo.UserRole;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,7 +26,7 @@ public class Member {
     private Email email;
 
     @Enumerated(EnumType.STRING)
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER) @Getter
     private Set<UserRole> roles = new HashSet<>();
 
     public static Member registerMember(String id, String name, String password, String email) {
@@ -41,6 +42,10 @@ public class Member {
 
     public void logout(IDName idName) {
 
+    }
+
+    public String getPassword() {
+        return password.getPassword();
     }
 
     public Long getMemberNo() {
