@@ -19,8 +19,8 @@ public class JwtUtils implements InitializingBean {
     private JWTVerifier jwtVerifier;
 
     @Override
-    public void afterPropertiesSet() throws Exception {
-        this.algorithm = Algorithm.HMAC512(properties.getSecretKey());
+    public void afterPropertiesSet() {
+        this.algorithm = Algorithm.HMAC256(properties.getSecretKey());
         this.jwtVerifier = JWT.require(algorithm).acceptLeeway(5).build();
     }
 

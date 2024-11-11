@@ -3,7 +3,7 @@ package com.keybit.webgateway.authorization.filter;
 import com.keybit.webgateway.authorization.jwt.JwtUtils;
 import com.keybit.webgateway.authorization.jwt.TokenUser;
 import com.keybit.webgateway.authorization.role.Role;
-import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpHeaders;
@@ -15,13 +15,19 @@ import reactor.core.publisher.Mono;
 
 import java.util.stream.Collectors;
 
+@Slf4j
 @Component
-@RequiredArgsConstructor
-public class JwtAuthenticationGatewayFilterFactory extends AbstractGatewayFilterFactory<JwtAuthenticationGatewayFilterFactory.Config> {
+public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<AuthorizationHeaderFilter.Config> {
 
     private final JwtUtils jwtUtils;
 
     public static class Config {}
+
+
+    public AuthorizationHeaderFilter(JwtUtils jwtUtils) {
+        super(Config.class);
+        this.jwtUtils = jwtUtils;
+    }
 
     @Override
     public GatewayFilter apply(Config config) {
@@ -35,7 +41,7 @@ public class JwtAuthenticationGatewayFilterFactory extends AbstractGatewayFilter
             String token = extractToken(request);
 
             if (!jwtUtils.isValid(token))
-                return onError(response, "invalid authorization header", HttpStatus.BAD_REQUEST);
+                return onError(response, "invalid JWT token", HttpStatus.BAD_REQUEST);
 
             TokenUser tokenUser = jwtUtils.decode(token);
 
@@ -47,6 +53,8 @@ public class JwtAuthenticationGatewayFilterFactory extends AbstractGatewayFilter
 
     private Mono<Void> onError(ServerHttpResponse response, String error, HttpStatus status) {
         response.setStatusCode(status);
+
+        log.error(error);
         return response.setComplete();
     }
 
