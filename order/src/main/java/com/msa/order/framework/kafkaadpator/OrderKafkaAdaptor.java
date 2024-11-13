@@ -23,7 +23,7 @@ public class OrderKafkaAdaptor implements EventOutputPort {
     @Value("${producers.topic.order.complete}")
     private String TOPIC_ORDER_COMPLETE;
 
-    @Value("${producers.topic.shipping-info.change}")
+    @Value("${producers.topic.order.shipping-info.change}")
     private String TOPIC_SHIPPING_INFO_CHANGE;
 
     private final KafkaTemplate<String, OrderCanceled> orderCanceledKafkaTemplate;

@@ -16,7 +16,7 @@ public class OrderEventConsumers {
     private final ObjectMapper om = new ObjectMapper();
     private final ChangeStockUsecase changeStockUsecase;
 
-    @KafkaListener(topics = "${consumers.topic.order.cancel}", groupId = "${consumers.group-id.name}")
+    @KafkaListener(topics = "${consumers.topic.order.cancel}", groupId = "${consumers.topic.order.group-id}")
     public void consumerCancel(ConsumerRecord<String, String> record) throws JsonProcessingException {
         System.out.println("order-cancel: " + record.value());
         OrderCanceled orderCanceled = om.readValue(record.value(), OrderCanceled.class);
@@ -27,5 +27,4 @@ public class OrderEventConsumers {
             changeStockUsecase.addStock(productNo, orderQuantity);
         });
     }
-
 }
