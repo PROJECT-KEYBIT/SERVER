@@ -5,11 +5,13 @@ import com.keybit.bestproduct.domain.model.entity.Item;
 import com.keybit.bestproduct.persistence.BestProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class BestProductService {
     private final BestProductRepository bestProductRepository;
@@ -24,11 +26,13 @@ public class BestProductService {
 
     public BestProduct dealBestProduct(Item item) {
         BestProduct bestProduct = bestProductRepository.findBestProductByItem(item);
+
         if (bestProduct != null) {
             bestProduct.increaseSalesVolume();
         } else {
             bestProduct = BestProduct.register(item);
+            bestProductRepository.save(bestProduct);
         }
-        return bestProductRepository.save(bestProduct);
+        return bestProduct;
     }
 }
