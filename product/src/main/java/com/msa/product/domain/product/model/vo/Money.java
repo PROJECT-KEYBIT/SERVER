@@ -17,18 +17,18 @@ public class Money {
     }
 
     protected Money multiply(int quantity) {
-        return createMoney(quantity * getValue());
+        return create(quantity * getValue());
     }
 
     protected Money add(Money money) {
-        return createMoney(this.getValue() + money.getValue());
+        return create(this.getValue() + money.getValue());
     }
 
     public int getValue() {
         return value;
     }
 
-    public static Money createMoney(int value) {
+    public static Money create(int value) {
         return new Money(value);
     }
 }
