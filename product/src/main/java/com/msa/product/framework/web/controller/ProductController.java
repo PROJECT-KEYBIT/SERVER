@@ -3,9 +3,13 @@ package com.msa.product.framework.web.controller;
 import com.msa.product.application.usecase.ChangeProductImageUsecase;
 import com.msa.product.application.usecase.ChangeStockUsecase;
 import com.msa.product.application.usecase.ClassifyProductUsecase;
+import com.msa.product.application.usecase.CreateProductUsecase;
 import com.msa.product.framework.web.dto.request.ChangeProductRequest;
+import com.msa.product.framework.web.dto.request.CreateProductRequest;
 import com.msa.product.framework.web.dto.response.ChangeProductResponse;
+import com.msa.product.framework.web.dto.response.CreateProductResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,14 +17,26 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/product")
 public class ProductController {
 
     private final ChangeProductImageUsecase changeProductImageUsecase;
     private final ClassifyProductUsecase classifyProductUsecase;
+    private final CreateProductUsecase createProductUsecase;
     private final ChangeStockUsecase changeStockUsecase;
 
-    @PutMapping("/product/{productNo}/product-images")
+    @PostMapping
+    public ResponseEntity<CreateProductResponse> createProduct(
+            @RequestBody CreateProductRequest request
+    ) {
+        CreateProductResponse product = createProductUsecase.createProduct(request);
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(product);
+    }
+
+    @PutMapping("/{productNo}/product-images")
     public ResponseEntity<List<ChangeProductResponse>> changeProductImage(
             @PathVariable String productNo,
             List<ChangeProductRequest> changeProductRequests
@@ -29,7 +45,7 @@ public class ProductController {
         return ResponseEntity.ok(changedProductResponses);
     }
 
-    @PutMapping("/product/{productNo}/category")
+    @PutMapping("/{productNo}/category")
     public ResponseEntity<List<String>> changeCategories(
             @PathVariable String productNo,
             @RequestBody List<String> categoryIds
@@ -38,7 +54,7 @@ public class ProductController {
         return ResponseEntity.ok(changedCategoryIds);
     }
 
-    @PutMapping("/product/{productNo}/stock")
+    @PutMapping("/{productNo}/stock")
     public ResponseEntity<Integer> changeStock(
             @PathVariable String productNo,
             int stock
