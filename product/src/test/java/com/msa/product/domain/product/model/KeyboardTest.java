@@ -17,7 +17,7 @@ public class KeyboardTest {
         //given
         String name = "keyboard";
         Description desc = Description.create("desc");
-        Money money = Money.createMoney(100);
+        Money money = Money.create(100);
         Stock stock = Stock.create(1000);
         Product keyboard = Product.create(name, desc, money, stock);
 
@@ -37,7 +37,7 @@ public class KeyboardTest {
         //given
         String name = "keyboard";
         Description desc = Description.create("desc");
-        Money money = Money.createMoney(100);
+        Money money = Money.create(100);
         Stock stock = Stock.create(10);
         Product keyboard = Product.create(name, desc, money, stock);
 
@@ -55,7 +55,7 @@ public class KeyboardTest {
         //given
         String name = "keyboard";
         Description desc = Description.create("desc");
-        Money money = Money.createMoney(100);
+        Money money = Money.create(100);
         Stock stock = Stock.create(1000);
 
         //when
