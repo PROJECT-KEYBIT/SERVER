@@ -25,6 +25,7 @@ public class CreateProductInputPort implements CreateProductUsecase {
                 .description(createProductRequest.description())
                 .price(createProductRequest.price())
                 .stock(createProductRequest.stock())
+                .category(createProductRequest.categoryNo())
                 .images(createProductRequest.images().stream()
                         .map(image -> ProductImage.create(image.image(), image.represent()))
                         .toList())
