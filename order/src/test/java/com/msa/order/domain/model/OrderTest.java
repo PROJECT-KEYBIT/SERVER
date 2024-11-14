@@ -13,7 +13,9 @@ public class OrderTest {
     @DisplayName("[Domain][Order] - 배송지 정보 변경 성공 테스트")
     @Test
     void givenShippingInfo_whenChangeShippingInfo_thenWordsFine() {
-        Order order = createOrder(OrderStatus.PREPARING);
+        OrderLines orderLines = createOrderLines(100, 10);
+        Order order = createOrder(orderLines);
+        order.prepare();
 
         //given
         Receiver receiver = Receiver.createReceiver("successTester", "010-0101-0102");
@@ -30,7 +32,9 @@ public class OrderTest {
     @DisplayName("[Domain][Order] - 배송지 정보 변경 실패 테스트")
     @Test
     void givenShippingInfo_whenChangeShippingInfo_thenThrowAlreadyShippedExceptionError() {
-        Order order = createOrder(OrderStatus.SHIPPED);
+        OrderLines orderLines = createOrderLines(100, 10);
+        Order order = createOrder(orderLines);
+        order.ship();
 
         //given
         Receiver receiver = Receiver.createReceiver("successTester", "010-0101-0102");
@@ -46,7 +50,9 @@ public class OrderTest {
     @DisplayName("[Domain][Order] - 주문 취소 성공 테스트")
     @Test
     void whenCancelOrder_thenWordsFine() {
-        Order order = createOrder(OrderStatus.PREPARING);
+        OrderLines orderLines = createOrderLines(100, 10);
+        Order order = createOrder(orderLines);
+        order.prepare();
 
         //when
         order.cancel();
@@ -58,7 +64,9 @@ public class OrderTest {
     @DisplayName("[Domain][Order] - 주문 취소 실패 테스트")
     @Test
     void whenCancelOrder_thenThrowAlreadyShippedError() {
-        Order order = createOrder(OrderStatus.SHIPPED);
+        OrderLines orderLines = createOrderLines(100, 10);
+        Order order = createOrder(orderLines);
+        order.ship();
 
         //when, then
         assertThatThrownBy(order::cancel)
@@ -76,19 +84,7 @@ public class OrderTest {
         assertThat(order.calculateTotalAmounts()).isEqualTo(Money.createMoney(1000));
     }
 
-    public static Order createOrder(OrderStatus orderStatus) {
-        OrderLines orderLines = createOrderLines(100, 10);
-
-        return createOrder(orderStatus, orderLines);
-    }
-
     public static Order createOrder(OrderLines orderLines) {
-        OrderStatus orderStatus = OrderStatus.PREPARING;
-
-        return createOrder(orderStatus, orderLines);
-    }
-
-    public static Order createOrder(OrderStatus orderStatus, OrderLines orderLines) {
         Orderer orderer = Orderer.createOrderer(1L, "tester1");
         Receiver receiver = Receiver.createReceiver("tester1", "010-0101-0101");
         Address address = Address.createAddress("zipcode", "adress");
@@ -98,7 +94,6 @@ public class OrderTest {
                 .orderer(orderer)
                 .shippingInfo(shippingInfo)
                 .orderLines(orderLines)
-                .orderStatus(orderStatus)
                 .build();
     }
 }

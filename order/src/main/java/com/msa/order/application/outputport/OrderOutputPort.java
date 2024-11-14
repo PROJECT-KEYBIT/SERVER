@@ -1,6 +1,7 @@
 package com.msa.order.application.outputport;
 
 import com.msa.order.domain.model.Order;
+import com.msa.order.domain.model.vo.OrderNo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface OrderOutputPort {
-    Optional<Order> loadOrder(String orderId);
+    Optional<Order> loadOrder(OrderNo orderNo);
     Order save(Order order);
-    Optional<List<Order>> loadOrdersByOrderer(Long ordererId);
+    List<Order> loadOrdersByOrderer(Long ordererId);
 }

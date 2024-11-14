@@ -24,6 +24,10 @@ public class OrderNo implements Serializable {
         this.no = no;
     }
 
+    public static OrderNo get(String no) {
+        return new OrderNo(no);
+    }
+
     public static OrderNo createOrderNo() {
         UUID uuid = UUID.randomUUID();
         String year = String.valueOf(LocalDate.now().getYear());

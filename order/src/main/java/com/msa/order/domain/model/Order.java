@@ -1,5 +1,9 @@
 package com.msa.order.domain.model;
 
+import com.msa.order.common.event.Events;
+import com.msa.order.domain.model.event.OrderCanceled;
+import com.msa.order.domain.model.event.OrderCompleted;
+import com.msa.order.domain.model.event.ShippingInfoChanged;
 import com.msa.order.domain.model.vo.*;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -9,9 +13,11 @@ import lombok.Getter;
 @Table(name = "orders")
 public class Order {
 
+    @Getter
     @EmbeddedId
     private OrderNo orderNo;
 
+    @Getter
     @Embedded
     private Orderer orderer;
 
@@ -35,7 +41,7 @@ public class Order {
         this.orderer = orderer;
         this.shippingInfo = shippingInfo;
         this.orderLines = orderLines;
-        this.orderStatus = OrderStatus.PREPARING;
+        this.orderStatus = OrderStatus.PAYMENT_WAITING;
     }
 
     public Money calculateTotalAmounts() {
@@ -46,14 +52,34 @@ public class Order {
         verifyNotYetShipped();
         setShippingInfo(shippingInfo);
 
-        //TODO: 배송지 변경 이벤트!
+        Events.publishShippingInfoChange(
+                new ShippingInfoChanged(getOrderNo(), getShippingInfo())
+        );
+    }
+
+    public void prepare() {
+        setOrderStatus(OrderStatus.PREPARING);
+    }
+
+    public void ship() {
+        setOrderStatus(OrderStatus.SHIPPED);
+    }
+
+    public void delivery() {
+        setOrderStatus(OrderStatus.DELIVERING);
+    }
+
+    public void deliveryComplete() {
+        setOrderStatus(OrderStatus.DELIVERY_COMPLETED);
     }
 
     public void cancel() {
         verifyNotYetShipped();
         setOrderStatus(OrderStatus.CANCELED);
 
-        //TODO: 주문 취소 이벤트!
+        Events.publishOrderCancel(
+                new OrderCanceled(getOrderer(), getOrderLines().getList())
+        );
     }
 
     private void verifyNotYetShipped() {
@@ -61,7 +87,7 @@ public class Order {
             throw new AlreadyShippedException("이미 배송된 상품입니다.");
     }
 
-    public String getOrderNo() {
+    public String getNo() {
         return this.orderNo.getNo();
     }
 
@@ -71,5 +97,9 @@ public class Order {
 
     private void setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public static OrderCompleted createOrderCompletedEvent(Orderer orderer, OrderLines orderLines) {
+        return new OrderCompleted(orderer, orderLines);
     }
 }
