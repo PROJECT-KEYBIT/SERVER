@@ -5,7 +5,6 @@ import com.msa.product.domain.product.model.vo.*;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.SuperBuilder;
 
 import java.util.HashSet;
 import java.util.List;
@@ -16,12 +15,12 @@ import java.util.stream.Collectors;
 public class Product {
 
     @EmbeddedId
+    @Builder.Default
     private final ProductNo productNo = ProductNo.createProductNo();
 
     @Getter
     private String name;
 
-    @Getter
     @Embedded
     private Description description;
 
@@ -49,6 +48,17 @@ public class Product {
     private ProductStatus productStatus = ProductStatus.PREPARING;
 
     protected Product() {}
+
+    @Builder(builderMethodName = "register")
+    private Product(String name, String description, int price, int stock, List<ProductImage> images, String category, String productStatus) {
+        this.name = name;
+        this.description = Description.create(description);
+        this.price = Money.create(price);
+        this.stock = Stock.create(stock);
+        this.images = ProductImages.create(images);
+        this.categories = Set.of(CategoryNo.get(category));
+        this.productStatus = ProductStatus.valueOf(productStatus);
+    }
 
     private Product(String name, Description description, Money price, Stock stock) {
         this.name = name;
@@ -95,6 +105,10 @@ public class Product {
     public Stock getStock() {
         return stock;
     }
+
+    public String getNo() { return productNo.getNo(); }
+    public String getDescription() { return description.getDescription(); }
+    public int getPrice() { return price.getValue(); }
 
     public Set<CategoryNo> getCategories() {
         return categories;
