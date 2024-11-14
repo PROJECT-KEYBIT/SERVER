@@ -3,6 +3,7 @@ package com.msa.product.application.inputport;
 import com.msa.product.application.outputport.CategoryOutputPort;
 import com.msa.product.application.usecase.ClassifyCategoryUsecase;
 import com.msa.product.domain.category.model.Category;
+import com.msa.product.domain.product.model.Product;
 import com.msa.product.framework.web.dto.CategoryDTO;
 import com.msa.product.framework.web.dto.request.CreateCategoryRequest;
 import lombok.RequiredArgsConstructor;
