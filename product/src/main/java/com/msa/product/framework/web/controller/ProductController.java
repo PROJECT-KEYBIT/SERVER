@@ -8,6 +8,7 @@ import com.msa.product.framework.web.dto.request.ChangeProductRequest;
 import com.msa.product.framework.web.dto.request.CreateProductRequest;
 import com.msa.product.framework.web.dto.response.ChangeProductResponse;
 import com.msa.product.framework.web.dto.response.CreateProductResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "product")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/product")
