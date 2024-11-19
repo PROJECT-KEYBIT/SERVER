@@ -8,19 +8,18 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "[회원-API]")
-@Controller
+@RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/member")
 public class MemberController {
 
     private final AddMemberUsecase addMemberUsecase;
     private final InquiryMemberUsecase inquiryMemberUsecase;
 
-    @PostMapping("/member/join")
+    @PostMapping("/join")
     public ResponseEntity<MemberDTO> createMember(
             @RequestBody SignUpInfo signUpInfo
     ) {
@@ -30,7 +29,7 @@ public class MemberController {
                 .body(member);
     }
 
-    @GetMapping("/member/{memberNo}")
+    @GetMapping("/{memberNo}")
     public ResponseEntity<MemberDTO> getMember(@PathVariable Long memberNo) {
         return ResponseEntity.ok(inquiryMemberUsecase.getMember(memberNo));
     }
