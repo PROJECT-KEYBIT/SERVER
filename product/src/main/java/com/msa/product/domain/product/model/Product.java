@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 public class Product {
 
     @EmbeddedId
-    @Builder.Default
     private final ProductNo productNo = ProductNo.createProductNo();
 
     @Getter
@@ -32,18 +31,15 @@ public class Product {
 
     @Getter
     @Embedded
-    @Builder.Default
     private ProductImages images = ProductImages.empty();
 
 
-    @Builder.Default
     @ElementCollection
     @CollectionTable(name = "product_category",
             joinColumns = @JoinColumn(name = "product_no"))
     private Set<CategoryNo> categories = new HashSet<>();
 
     @Getter
-    @Builder.Default
     @Enumerated(EnumType.STRING)
     private ProductStatus productStatus = ProductStatus.PREPARING;
 
