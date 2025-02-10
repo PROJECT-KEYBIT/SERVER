@@ -6,4 +6,4 @@ spring:
     name: config
 
   cloud:
-    config.server.git.uri: https://github.com/PROJECT-KEYBIT/SERVER.git
+    config.server.git.uri: https://github.com/kswdev/keybit-config.git
