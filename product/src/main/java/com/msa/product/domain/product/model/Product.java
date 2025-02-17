@@ -26,6 +26,7 @@ public class Product {
     @Embedded
     private Money price;
 
+    @Getter
     @Embedded
     private Stock stock;
 
@@ -34,6 +35,7 @@ public class Product {
     private ProductImages images = ProductImages.empty();
 
 
+    @Getter
     @ElementCollection
     @CollectionTable(name = "product_category",
             joinColumns = @JoinColumn(name = "product_no"))
@@ -98,17 +100,9 @@ public class Product {
         return getStock().getValue();
     }
 
-    public Stock getStock() {
-        return stock;
-    }
-
     public String getNo() { return productNo.getNo(); }
     public String getDescription() { return description.getDescription(); }
     public int getPrice() { return price.getValue(); }
-
-    public Set<CategoryNo> getCategories() {
-        return categories;
-    }
 
     public void preparing() {
         this.productStatus = ProductStatus.PREPARING;

@@ -1,4 +1,4 @@
-package com.keybit.bestproduct.domain.model.entity;
+package com.keybit.bestproduct.entity.vo;
 
 import lombok.Getter;
 

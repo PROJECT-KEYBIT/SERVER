@@ -1,7 +1,7 @@
 package com.keybit.bestproduct.persistence;
 
-import com.keybit.bestproduct.domain.model.entity.BestProduct;
-import com.keybit.bestproduct.domain.model.entity.Item;
+import com.keybit.bestproduct.entity.BestProduct;
+import com.keybit.bestproduct.entity.vo.Item;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
