@@ -1,6 +1,7 @@
 package com.msa.product.domain.product.model;
 
 import com.msa.product.domain.category.model.vo.CategoryNo;
+import com.msa.product.domain.common.model.AuditingFields;
 import com.msa.product.domain.product.model.vo.*;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -34,7 +35,6 @@ public class Product {
     @Embedded
     private ProductImages images = ProductImages.empty();
 
-
     @Getter
     @ElementCollection
     @CollectionTable(name = "product_category",
@@ -44,6 +44,10 @@ public class Product {
     @Getter
     @Enumerated(EnumType.STRING)
     private ProductStatus productStatus = ProductStatus.PREPARING;
+
+    @Getter
+    @Embedded
+    private AuditingFields auditingFields = new AuditingFields();
 
     protected Product() {}
 
