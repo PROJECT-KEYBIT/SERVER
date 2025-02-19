@@ -20,7 +20,7 @@ public class ClassifyProductInputPort implements ClassifyProductUsecase {
     @Override
     public List<String> changeCategory(String productNo, List<String> categoryIds) {
         Product product = outputPort.loadProduct(productNo)
-                .orElseThrow(() -> new NoSuchElementException(productNo + ": 없는 주문 번호입니다."));
+                .orElseThrow(() -> new NoSuchElementException(productNo + ": 없는 상품 번호입니다."));
 
         product.changeCategories(categoryIds);
         return categoryIds;

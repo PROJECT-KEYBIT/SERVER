@@ -41,7 +41,7 @@ public class ProductImages {
 
     public List<ProductImage> changeProductImageList(List<ProductImage> productImages) {
         getProductImages().clear();
-        setProductImages(productImages);
+        getProductImages().addAll(productImages);
 
         return getProductImages();
     }
@@ -62,9 +62,5 @@ public class ProductImages {
 
     public List<ProductImage> getProductImages() {
         return productImages;
-    }
-
-    private void setProductImages(List<ProductImage> productImages) {
-        this.productImages = productImages;
     }
 }
