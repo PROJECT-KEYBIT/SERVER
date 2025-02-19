@@ -19,7 +19,7 @@ public class ChangeStockInputPort implements ChangeStockUsecase {
     @Override
     public int changeStock(String productNo, int stock) {
         Product product = outputPort.loadProduct(productNo)
-                .orElseThrow(() -> new NoSuchElementException(productNo + ": 없는 주문 번호입니다."));
+                .orElseThrow(() -> new NoSuchElementException(productNo + ": 없는 상품 번호입니다."));
 
         return product.changeStock(stock);
     }
@@ -27,7 +27,7 @@ public class ChangeStockInputPort implements ChangeStockUsecase {
     @Override
     public int addStock(String productNo, int stock) {
         Product product = outputPort.loadProduct(productNo)
-                .orElseThrow(() -> new NoSuchElementException(productNo + ": 없는 주문 번호입니다."));
+                .orElseThrow(() -> new NoSuchElementException(productNo + ": 없는 상품 번호입니다."));
 
         return product.addStock(stock);
     }
@@ -35,7 +35,7 @@ public class ChangeStockInputPort implements ChangeStockUsecase {
     @Override
     public int minusStock(String productNo, int stock) {
         Product product = outputPort.loadProduct(productNo)
-                .orElseThrow(() -> new NoSuchElementException(productNo + ": 없는 주문 번호입니다."));
+                .orElseThrow(() -> new NoSuchElementException(productNo + ": 없는 상품 번호입니다."));
 
         return product.minusStock(stock);
     }
