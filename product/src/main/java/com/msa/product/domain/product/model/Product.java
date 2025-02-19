@@ -42,6 +42,10 @@ public class Product {
     private Set<CategoryNo> categories = new HashSet<>();
 
     @Getter
+    @Embedded
+    private ProductTags tags = ProductTags.empty();
+
+    @Getter
     @Enumerated(EnumType.STRING)
     private ProductStatus productStatus = ProductStatus.PREPARING;
 
@@ -130,6 +134,11 @@ public class Product {
 
     private void setCategories(Set<CategoryNo> categories) {
         this.categories = categories;
+    }
+
+    public void updateTags(String tags) {
+        getTags().updateTags(tags);
+        //TODO: 태그 업데이트 도메인 이벤트
     }
 }
 
