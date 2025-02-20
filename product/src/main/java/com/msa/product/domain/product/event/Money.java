@@ -1,4 +1,4 @@
-package com.msa.product.domain.product.model.event;
+package com.msa.product.domain.product.event;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
