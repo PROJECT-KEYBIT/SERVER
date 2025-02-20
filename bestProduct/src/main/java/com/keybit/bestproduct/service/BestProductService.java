@@ -1,7 +1,7 @@
-package com.keybit.bestproduct.domain.service;
+package com.keybit.bestproduct.service;
 
-import com.keybit.bestproduct.domain.model.entity.BestProduct;
-import com.keybit.bestproduct.domain.model.entity.Item;
+import com.keybit.bestproduct.entity.BestProduct;
+import com.keybit.bestproduct.entity.vo.Item;
 import com.keybit.bestproduct.persistence.BestProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

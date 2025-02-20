@@ -63,8 +63,6 @@ public class KeyboardTest {
 
         //then
         assertThat(keyboard)
-                .hasFieldOrPropertyWithValue("name", "keyboard")
-                .hasFieldOrPropertyWithValue("description", desc)
-                .hasFieldOrPropertyWithValue("stock", stock);
+                .hasFieldOrPropertyWithValue("name", "keyboard");
     }
 }

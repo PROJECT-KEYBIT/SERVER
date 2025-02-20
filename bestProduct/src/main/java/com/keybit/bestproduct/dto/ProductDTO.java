@@ -1,6 +1,6 @@
-package com.keybit.bestproduct.domain.model.dto;
+package com.keybit.bestproduct.dto;
 
-import com.keybit.bestproduct.domain.model.entity.BestProduct;
+import com.keybit.bestproduct.entity.BestProduct;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,6 +1,7 @@
 package com.msa.product.domain.product.model;
 
 import com.msa.product.domain.category.model.vo.CategoryNo;
+import com.msa.product.domain.common.model.AuditingFields;
 import com.msa.product.domain.product.model.vo.*;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -26,6 +27,7 @@ public class Product {
     @Embedded
     private Money price;
 
+    @Getter
     @Embedded
     private Stock stock;
 
@@ -33,15 +35,23 @@ public class Product {
     @Embedded
     private ProductImages images = ProductImages.empty();
 
-
+    @Getter
     @ElementCollection
     @CollectionTable(name = "product_category",
             joinColumns = @JoinColumn(name = "product_no"))
     private Set<CategoryNo> categories = new HashSet<>();
 
     @Getter
+    @Embedded
+    private ProductTags tags = ProductTags.empty();
+
+    @Getter
     @Enumerated(EnumType.STRING)
     private ProductStatus productStatus = ProductStatus.PREPARING;
+
+    @Getter
+    @Embedded
+    private AuditingFields auditingFields = new AuditingFields();
 
     protected Product() {}
 
@@ -98,17 +108,9 @@ public class Product {
         return getStock().getValue();
     }
 
-    public Stock getStock() {
-        return stock;
-    }
-
     public String getNo() { return productNo.getNo(); }
     public String getDescription() { return description.getDescription(); }
     public int getPrice() { return price.getValue(); }
-
-    public Set<CategoryNo> getCategories() {
-        return categories;
-    }
 
     public void preparing() {
         this.productStatus = ProductStatus.PREPARING;
@@ -132,6 +134,11 @@ public class Product {
 
     private void setCategories(Set<CategoryNo> categories) {
         this.categories = categories;
+    }
+
+    public void updateTags(String tags) {
+        getTags().updateTags(tags);
+        //TODO: 태그 업데이트 도메인 이벤트
     }
 }
 

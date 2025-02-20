@@ -23,7 +23,7 @@ public class ChangeProductImageInputPort implements ChangeProductImageUsecase {
     @Override
     public List<ChangeProductResponse> changeProductImage(String productNo, List<ChangeProductRequest> productImages) {
         Product product = outputPort.loadProduct(productNo)
-                .orElseThrow(() -> new NoSuchElementException(productNo + ": 존재하지 않는 상품번호 입니다."));
+                .orElseThrow(() -> new NoSuchElementException(productNo + ": 없는 상품 번호 입니다."));
 
         List<ProductImage> productImageList = productImages.stream()
                 .map(changeProductRequest -> ProductImage.create(changeProductRequest.image(), changeProductRequest.thumbnail()))

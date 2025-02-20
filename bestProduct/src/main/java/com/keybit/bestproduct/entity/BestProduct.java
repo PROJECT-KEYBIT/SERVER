@@ -1,5 +1,6 @@
-package com.keybit.bestproduct.domain.model.entity;
+package com.keybit.bestproduct.entity;
 
+import com.keybit.bestproduct.entity.vo.Item;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 

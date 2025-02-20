@@ -1,9 +1,9 @@
-package com.keybit.bestproduct.web;
+package com.keybit.bestproduct.controller;
 
-import com.keybit.bestproduct.domain.model.dto.ItemDTO;
-import com.keybit.bestproduct.domain.model.dto.ProductDTO;
-import com.keybit.bestproduct.domain.model.entity.BestProduct;
-import com.keybit.bestproduct.domain.service.BestProductService;
+import com.keybit.bestproduct.dto.ItemDTO;
+import com.keybit.bestproduct.dto.ProductDTO;
+import com.keybit.bestproduct.entity.BestProduct;
+import com.keybit.bestproduct.service.BestProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
