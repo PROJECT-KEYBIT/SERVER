@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.event.TransactionalEventListener;
 
 
 @Slf4j
@@ -31,6 +32,7 @@ public class OrderKafkaAdaptor implements EventOutputPort {
     private final KafkaTemplate<String, ShippingInfoChanged> shippingInfoChangedKafkaTemplate;
 
     @Override
+    @TransactionalEventListener
     public void occurOrderCancelEvent(OrderCanceled orderCanceled) {
         orderCanceledKafkaTemplate.send(TOPIC_ORDER_CANCEL, orderCanceled)
                 .thenAccept(result -> log.info("resultOffset: [{}]", result.getRecordMetadata().hasOffset()))
@@ -41,6 +43,7 @@ public class OrderKafkaAdaptor implements EventOutputPort {
     }
 
     @Override
+    @TransactionalEventListener
     public void occurOrderCompletedEvent(OrderCompleted orderCompleted) {
         orderCompleteddKafkaTemplate.send(TOPIC_ORDER_COMPLETE, orderCompleted)
                 .thenAccept(result -> log.info("resultOffset: [{}]", result.getRecordMetadata().hasOffset()))
@@ -51,6 +54,7 @@ public class OrderKafkaAdaptor implements EventOutputPort {
     }
 
     @Override
+    @TransactionalEventListener
     public void occurShippingInfoChangedEvent(ShippingInfoChanged shippingInfoChanged) {
         shippingInfoChangedKafkaTemplate.send(TOPIC_SHIPPING_INFO_CHANGE, shippingInfoChanged)
                 .thenAccept(result -> log.info("resultOffset: [{}]", result.getRecordMetadata().hasOffset()))
