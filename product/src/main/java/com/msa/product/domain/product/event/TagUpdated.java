@@ -1,12 +1,6 @@
 package com.msa.product.domain.product.event;
 
-import lombok.Getter;
-
-import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Getter
-public class TagUpdated {
+public record TagUpdated(Set<String> tagNames) { }
 
-    private Set<String> tagNames = new LinkedHashSet<>();
-}
