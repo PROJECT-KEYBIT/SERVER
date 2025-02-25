@@ -1,7 +1,7 @@
 package com.msa.order.application.inputport;
 
 import com.msa.order.application.outputport.OrderOutputPort;
-import com.msa.order.application.usecase.CreateOrderUsecase;
+import com.msa.order.domain.service.CreateOrder;
 import com.msa.order.domain.model.Order;
 import com.msa.order.domain.model.vo.*;
 import com.msa.order.framework.web.dto.OrderLineDTO;
@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class CreateOrderInputPort implements CreateOrderUsecase {
+public class CreateOrderInputPort implements CreateOrder {
 
     private final OrderOutputPort outputPort;
 

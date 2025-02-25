@@ -2,7 +2,7 @@ package com.msa.order.application.inputport;
 
 import com.msa.order.application.outputport.EventOutputPort;
 import com.msa.order.application.outputport.OrderOutputPort;
-import com.msa.order.application.usecase.OrderCancelUsecase;
+import com.msa.order.domain.service.OrderCancel;
 import com.msa.order.domain.model.Order;
 import com.msa.order.domain.model.vo.OrderNo;
 import com.msa.order.domain.model.vo.OrderStatus;
@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class OrderCancelInputPort implements OrderCancelUsecase {
+public class OrderCancelInputPort implements OrderCancel {
 
     private final OrderOutputPort orderOutputPort;
     private final EventOutputPort eventOutputPort;

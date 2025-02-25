@@ -1,10 +1,10 @@
-package com.msa.order.application.usecase;
+package com.msa.order.domain.service;
 
 import com.msa.order.framework.web.dto.OrderDTO;
 
 import java.util.List;
 
-public interface InquiryOrderUsecase {
+public interface InquiryOrder {
 
     OrderDTO getOrder(String orderNo);
     List<OrderDTO> getAllOrderByOrdererId(Long ordererId);

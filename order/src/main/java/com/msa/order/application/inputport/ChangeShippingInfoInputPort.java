@@ -1,7 +1,7 @@
 package com.msa.order.application.inputport;
 
 import com.msa.order.application.outputport.OrderOutputPort;
-import com.msa.order.application.usecase.ChangeShippingInfoUsecase;
+import com.msa.order.domain.service.ChangeShippingInfo;
 import com.msa.order.domain.model.Order;
 import com.msa.order.domain.model.vo.Address;
 import com.msa.order.domain.model.vo.OrderNo;
@@ -18,7 +18,7 @@ import java.util.NoSuchElementException;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class ChangeShippingInfoInputPort implements ChangeShippingInfoUsecase {
+public class ChangeShippingInfoInputPort implements ChangeShippingInfo {
 
     private final OrderOutputPort orderOutputPort;
 

@@ -1,9 +1,9 @@
-package com.msa.order.application.usecase;
+package com.msa.order.domain.service;
 
 import com.msa.order.framework.web.dto.request.ChangeShippingInfoRequest;
 import com.msa.order.framework.web.dto.response.ChangeShippingInfoResponse;
 
-public interface ChangeShippingInfoUsecase {
+public interface ChangeShippingInfo {
 
     ChangeShippingInfoResponse changeShippingInfo(String orderNo, ChangeShippingInfoRequest changeShippingInfoRequest);
 }

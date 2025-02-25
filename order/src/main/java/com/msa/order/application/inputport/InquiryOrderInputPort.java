@@ -1,7 +1,7 @@
 package com.msa.order.application.inputport;
 
 import com.msa.order.application.outputport.OrderOutputPort;
-import com.msa.order.application.usecase.InquiryOrderUsecase;
+import com.msa.order.domain.service.InquiryOrder;
 import com.msa.order.domain.model.vo.OrderNo;
 import com.msa.order.framework.web.dto.OrderDTO;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class InquiryOrderInputPort implements InquiryOrderUsecase {
+public class InquiryOrderInputPort implements InquiryOrder {
 
     private final OrderOutputPort orderOutputPort;
 

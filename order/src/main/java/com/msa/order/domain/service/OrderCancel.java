@@ -1,8 +1,8 @@
-package com.msa.order.application.usecase;
+package com.msa.order.domain.service;
 
 import com.msa.order.domain.model.vo.OrderStatus;
 
-public interface OrderCancelUsecase {
+public interface OrderCancel {
 
     OrderStatus cancel(String orderNo);
 }
