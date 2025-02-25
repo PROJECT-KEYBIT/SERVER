@@ -1,6 +1,6 @@
 package com.msa.order.framework.jpaadaptor;
 
-import com.msa.order.application.outputport.OrderOutputPort;
+import com.msa.order.application.port.out.OrderOutputPort;
 import com.msa.order.domain.model.Order;
 import com.msa.order.domain.model.vo.OrderNo;
 import lombok.RequiredArgsConstructor;

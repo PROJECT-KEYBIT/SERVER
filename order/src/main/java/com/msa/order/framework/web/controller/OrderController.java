@@ -1,9 +1,9 @@
 package com.msa.order.framework.web.controller;
 
-import com.msa.order.domain.service.ChangeShippingInfo;
-import com.msa.order.domain.service.CreateOrder;
-import com.msa.order.domain.service.InquiryOrder;
-import com.msa.order.domain.service.OrderCancel;
+import com.msa.order.application.port.in.ChangeShippingInfo;
+import com.msa.order.application.port.in.CreateOrder;
+import com.msa.order.application.port.in.InquiryOrder;
+import com.msa.order.application.port.in.OrderCancel;
 import com.msa.order.domain.model.vo.OrderStatus;
 import com.msa.order.framework.web.dto.OrderDTO;
 import com.msa.order.framework.web.dto.request.ChangeShippingInfoRequest;

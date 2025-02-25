@@ -1,6 +1,6 @@
 package com.msa.order.framework.kafkaadpator;
 
-import com.msa.order.application.outputport.EventOutputPort;
+import com.msa.order.application.port.out.EventOutputPort;
 import com.msa.order.domain.event.OrderCanceled;
 import com.msa.order.domain.event.OrderCompleted;
 import com.msa.order.domain.event.ShippingInfoChanged;

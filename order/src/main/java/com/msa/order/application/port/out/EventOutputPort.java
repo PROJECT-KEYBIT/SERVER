@@ -1,4 +1,4 @@
-package com.msa.order.application.outputport;
+package com.msa.order.application.port.out;
 
 import com.msa.order.domain.event.OrderCanceled;
 import com.msa.order.domain.event.OrderCompleted;

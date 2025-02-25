@@ -1,7 +1,7 @@
-package com.msa.order.application.inputport;
+package com.msa.order.application.service;
 
-import com.msa.order.application.outputport.OrderOutputPort;
-import com.msa.order.domain.service.CreateOrder;
+import com.msa.order.application.port.out.OrderOutputPort;
+import com.msa.order.application.port.in.CreateOrder;
 import com.msa.order.domain.model.Order;
 import com.msa.order.domain.model.vo.*;
 import com.msa.order.framework.web.dto.OrderLineDTO;

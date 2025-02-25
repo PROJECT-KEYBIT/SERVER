@@ -1,7 +1,7 @@
-package com.msa.order.application.inputport;
+package com.msa.order.application.service;
 
-import com.msa.order.application.outputport.OrderOutputPort;
-import com.msa.order.domain.service.ChangeShippingInfo;
+import com.msa.order.application.port.out.OrderOutputPort;
+import com.msa.order.application.port.in.ChangeShippingInfo;
 import com.msa.order.domain.model.Order;
 import com.msa.order.domain.model.vo.Address;
 import com.msa.order.domain.model.vo.OrderNo;

@@ -1,8 +1,8 @@
-package com.msa.order.application.inputport;
+package com.msa.order.application.service;
 
-import com.msa.order.application.outputport.EventOutputPort;
-import com.msa.order.application.outputport.OrderOutputPort;
-import com.msa.order.domain.service.OrderCancel;
+import com.msa.order.application.port.out.EventOutputPort;
+import com.msa.order.application.port.out.OrderOutputPort;
+import com.msa.order.application.port.in.OrderCancel;
 import com.msa.order.domain.model.Order;
 import com.msa.order.domain.model.vo.OrderNo;
 import com.msa.order.domain.model.vo.OrderStatus;

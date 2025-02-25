@@ -1,6 +1,6 @@
 package com.msa.order.config;
 
-import com.msa.order.application.outputport.EventOutputPort;
+import com.msa.order.application.port.out.EventOutputPort;
 import com.msa.order.common.event.Events;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.InitializingBean;
