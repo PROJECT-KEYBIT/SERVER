@@ -1,9 +1,9 @@
 package com.msa.order.framework.kafkaadpator;
 
 import com.msa.order.application.outputport.EventOutputPort;
-import com.msa.order.domain.model.event.OrderCanceled;
-import com.msa.order.domain.model.event.OrderCompleted;
-import com.msa.order.domain.model.event.ShippingInfoChanged;
+import com.msa.order.domain.event.OrderCanceled;
+import com.msa.order.domain.event.OrderCompleted;
+import com.msa.order.domain.event.ShippingInfoChanged;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

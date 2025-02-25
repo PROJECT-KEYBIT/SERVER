@@ -1,4 +1,4 @@
-package com.msa.order.domain.model.event;
+package com.msa.order.domain.event;
 
 import com.msa.order.domain.model.vo.OrderNo;
 import com.msa.order.domain.model.vo.ShippingInfo;

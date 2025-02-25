@@ -4,7 +4,6 @@ import com.msa.order.application.outputport.EventOutputPort;
 import com.msa.order.application.outputport.OrderOutputPort;
 import com.msa.order.application.usecase.OrderCancelUsecase;
 import com.msa.order.domain.model.Order;
-import com.msa.order.domain.model.event.OrderCanceled;
 import com.msa.order.domain.model.vo.OrderNo;
 import com.msa.order.domain.model.vo.OrderStatus;
 import lombok.RequiredArgsConstructor;
