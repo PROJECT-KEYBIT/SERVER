@@ -1,4 +1,4 @@
-package com.msa.order.framework.kafkaadpater;
+package com.msa.order.framework.kafkaadpater.out;
 
 import com.msa.order.application.port.out.EventPublisher;
 import com.msa.order.domain.event.OrderCanceled;
@@ -11,11 +11,13 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.event.TransactionalEventListener;
 
-
+/*
+ *  TODO: 이벤트 분리하기
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class OrderKafkaAdapter implements EventPublisher {
+public class OrderKafkaProducer implements EventPublisher {
 
 
     @Value("${producers.topic.order.cancel}")

@@ -1,4 +1,4 @@
-package com.keybit.tag.entity;
+package com.keybit.tag.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;

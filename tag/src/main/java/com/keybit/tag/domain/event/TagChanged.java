@@ -1,4 +1,4 @@
-package com.msa.product.domain.product.event;
+package com.keybit.tag.domain.event;
 
 import java.util.Set;
 

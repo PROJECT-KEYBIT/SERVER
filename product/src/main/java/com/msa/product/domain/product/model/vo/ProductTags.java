@@ -34,17 +34,4 @@ public class ProductTags {
     public void updateTags(String tags) {
         this.tags = tags;
     }
-
-    private Set<String> parseTagNames(String tags) {
-        if (tags == null) return Set.of();
-
-        Matcher matcher = PRODUCT_TAG_PATTERN.matcher(tags.strip());
-
-        Set<String> tagNames = new LinkedHashSet<>();
-
-        while (matcher.find())
-            tagNames.add(matcher.group().replace("#", ""));
-
-        return Set.copyOf(tagNames);
-    }
 }

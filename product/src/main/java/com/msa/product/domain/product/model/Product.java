@@ -138,7 +138,6 @@ public class Product {
 
     public void updateTags(String tags) {
         getTags().updateTags(tags);
-        //TODO: 태그 업데이트 도메인 이벤트
     }
 }
 
