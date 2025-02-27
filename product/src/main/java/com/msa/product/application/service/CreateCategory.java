@@ -1,7 +1,7 @@
-package com.msa.product.application.inputport;
+package com.msa.product.application.service;
 
+import com.msa.product.application.inputport.CreateCategoryUsecase;
 import com.msa.product.application.outputport.CategoryOutputPort;
-import com.msa.product.application.usecase.CreateCategoryUsecase;
 import com.msa.product.domain.category.model.Category;
 import com.msa.product.framework.web.dto.request.CreateCategoryRequest;
 import com.msa.product.framework.web.dto.response.CreateCategoryResponse;
@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 @RequiredArgsConstructor
-public class CreateCategoryInputPort implements CreateCategoryUsecase {
+public class CreateCategory implements CreateCategoryUsecase {
 
     private final CategoryOutputPort outputPort;
 

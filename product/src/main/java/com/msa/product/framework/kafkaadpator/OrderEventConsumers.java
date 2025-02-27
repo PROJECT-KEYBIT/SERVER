@@ -2,7 +2,7 @@ package com.msa.product.framework.kafkaadpator;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.msa.product.application.usecase.ChangeStockUsecase;
+import com.msa.product.application.inputport.ChangeStockUsecase;
 import com.msa.product.domain.product.event.OrderCanceled;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerRecord;

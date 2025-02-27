@@ -1,4 +1,4 @@
-package com.msa.product.application.usecase;
+package com.msa.product.application.inputport;
 
 import com.msa.product.framework.web.dto.request.CreateProductRequest;
 import com.msa.product.framework.web.dto.response.CreateProductResponse;

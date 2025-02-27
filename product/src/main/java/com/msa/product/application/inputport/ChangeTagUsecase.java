@@ -1,4 +1,4 @@
-package com.msa.product.application.usecase;
+package com.msa.product.application.inputport;
 
 public interface ChangeTagUsecase {
     void changeTags(String productNo, String tags);

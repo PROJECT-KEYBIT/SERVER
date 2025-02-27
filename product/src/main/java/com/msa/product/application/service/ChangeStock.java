@@ -1,7 +1,7 @@
-package com.msa.product.application.inputport;
+package com.msa.product.application.service;
 
+import com.msa.product.application.inputport.ChangeStockUsecase;
 import com.msa.product.application.outputport.ProductOutputPort;
-import com.msa.product.application.usecase.ChangeStockUsecase;
 import com.msa.product.domain.product.model.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class ChangeStockInputPort implements ChangeStockUsecase {
+public class ChangeStock implements ChangeStockUsecase {
 
     private final ProductOutputPort outputPort;
 

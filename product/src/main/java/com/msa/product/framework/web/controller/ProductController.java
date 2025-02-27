@@ -1,9 +1,9 @@
 package com.msa.product.framework.web.controller;
 
-import com.msa.product.application.usecase.ChangeProductImageUsecase;
-import com.msa.product.application.usecase.ChangeStockUsecase;
-import com.msa.product.application.usecase.ClassifyProductUsecase;
-import com.msa.product.application.usecase.CreateProductUsecase;
+import com.msa.product.application.inputport.ChangeProductImageUsecase;
+import com.msa.product.application.inputport.ChangeStockUsecase;
+import com.msa.product.application.inputport.ClassifyProductUsecase;
+import com.msa.product.application.inputport.CreateProductUsecase;
 import com.msa.product.framework.web.dto.request.ChangeProductRequest;
 import com.msa.product.framework.web.dto.request.CreateProductRequest;
 import com.msa.product.framework.web.dto.response.ChangeProductResponse;

@@ -1,7 +1,7 @@
-package com.msa.product.application.inputport;
+package com.msa.product.application.service;
 
+import com.msa.product.application.inputport.ChangeProductImageUsecase;
 import com.msa.product.application.outputport.ProductOutputPort;
-import com.msa.product.application.usecase.ChangeProductImageUsecase;
 import com.msa.product.domain.product.model.Product;
 import com.msa.product.domain.product.model.vo.ProductImage;
 import com.msa.product.framework.web.dto.request.ChangeProductRequest;
@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class ChangeProductImageInputPort implements ChangeProductImageUsecase {
+public class ChangeProductImage implements ChangeProductImageUsecase {
 
     private final ProductOutputPort outputPort;
 

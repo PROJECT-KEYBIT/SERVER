@@ -1,7 +1,7 @@
-package com.msa.product.application.inputport;
+package com.msa.product.application.service;
 
+import com.msa.product.application.inputport.ChangeTagUsecase;
 import com.msa.product.application.outputport.ProductOutputPort;
-import com.msa.product.application.usecase.ChangeTagUsecase;
 import com.msa.product.domain.product.model.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
-public class ChangeTagInputPort implements ChangeTagUsecase {
+public class ChangeTag implements ChangeTagUsecase {
 
     private final ProductOutputPort productOutputPort;
 
