@@ -1,4 +1,4 @@
-package com.keybit.member.application.usecase;
+package com.keybit.member.application.port.in;
 
 import com.keybit.member.framework.web.dto.MemberDTO;
 

@@ -1,4 +1,4 @@
-package com.keybit.member.framework.jpaadaptor;
+package com.keybit.member.framework.jpaadapter;
 
 import com.keybit.member.domain.model.Member;
 import org.springframework.data.jpa.repository.JpaRepository;

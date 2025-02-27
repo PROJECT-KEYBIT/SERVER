@@ -1,7 +1,7 @@
-package com.keybit.member.application.inputport;
+package com.keybit.member.application.service;
 
-import com.keybit.member.application.outputport.MemberOutputPort;
-import com.keybit.member.application.usecase.InquiryMemberUsecase;
+import com.keybit.member.application.port.out.MemberOutputPort;
+import com.keybit.member.application.port.in.InquiryMemberUsecase;
 import com.keybit.member.domain.model.Member;
 import com.keybit.member.framework.web.dto.MemberDTO;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class InquiryMemberInputPort implements InquiryMemberUsecase {
+public class InquiryMember implements InquiryMemberUsecase {
 
     private final MemberOutputPort memberOutputPort;
 

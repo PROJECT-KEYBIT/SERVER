@@ -1,4 +1,4 @@
-package com.keybit.member.application.outputport;
+package com.keybit.member.application.port.out;
 
 import com.keybit.member.domain.model.Member;
 import org.springframework.stereotype.Repository;

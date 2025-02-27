@@ -1,7 +1,7 @@
 package com.keybit.member.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.keybit.member.application.outputport.MemberOutputPort;
+import com.keybit.member.application.port.out.MemberOutputPort;
 import com.keybit.member.common.jwt.JwtIssuer;
 import com.keybit.member.common.jwt.LoginFilter;
 import com.keybit.member.domain.model.Member;

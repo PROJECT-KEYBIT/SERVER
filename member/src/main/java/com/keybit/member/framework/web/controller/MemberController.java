@@ -1,7 +1,7 @@
 package com.keybit.member.framework.web.controller;
 
-import com.keybit.member.application.usecase.AddMemberUsecase;
-import com.keybit.member.application.usecase.InquiryMemberUsecase;
+import com.keybit.member.application.port.in.AddMemberUsecase;
+import com.keybit.member.application.port.in.InquiryMemberUsecase;
 import com.keybit.member.framework.web.dto.MemberDTO;
 import com.keybit.member.framework.web.dto.request.SignUpInfo;
 import io.swagger.v3.oas.annotations.tags.Tag;
