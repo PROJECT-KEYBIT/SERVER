@@ -1,7 +1,6 @@
 package com.msa.order.application.service;
 
 import com.msa.order.application.port.out.OrderOutputPort;
-import com.msa.order.application.port.in.CreateOrder;
 import com.msa.order.domain.model.Order;
 import com.msa.order.domain.model.vo.*;
 import com.msa.order.framework.web.dto.OrderLineDTO;
@@ -16,7 +15,7 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class CreateOrderInputPort implements CreateOrder {
+public class CreateOrder implements com.msa.order.application.port.in.CreateOrder {
 
     private final OrderOutputPort outputPort;
 

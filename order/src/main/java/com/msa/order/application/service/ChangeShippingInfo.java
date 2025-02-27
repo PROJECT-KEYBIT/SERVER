@@ -2,8 +2,6 @@ package com.msa.order.application.service;
 
 import com.msa.order.application.port.out.EventPublisher;
 import com.msa.order.application.port.out.OrderOutputPort;
-import com.msa.order.application.port.in.ChangeShippingInfo;
-import com.msa.order.common.event.Events;
 import com.msa.order.domain.event.ShippingInfoChanged;
 import com.msa.order.domain.model.Order;
 import com.msa.order.domain.model.vo.Address;
@@ -21,7 +19,7 @@ import java.util.NoSuchElementException;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class ChangeShippingInfoInputPort implements ChangeShippingInfo {
+public class ChangeShippingInfo implements com.msa.order.application.port.in.ChangeShippingInfo {
 
     private final OrderOutputPort orderOutputPort;
     private final EventPublisher eventPublisher;

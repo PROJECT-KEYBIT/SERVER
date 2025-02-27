@@ -2,8 +2,6 @@ package com.msa.order.application.service;
 
 import com.msa.order.application.port.out.EventPublisher;
 import com.msa.order.application.port.out.OrderOutputPort;
-import com.msa.order.application.port.in.OrderCancel;
-import com.msa.order.common.event.Events;
 import com.msa.order.domain.event.OrderCanceled;
 import com.msa.order.domain.model.Order;
 import com.msa.order.domain.model.vo.OrderNo;
@@ -17,7 +15,7 @@ import java.util.NoSuchElementException;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class OrderCancelInputPort implements OrderCancel {
+public class OrderCancel implements com.msa.order.application.port.in.OrderCancel {
 
     private final OrderOutputPort orderOutputPort;
     private final EventPublisher eventPublisher;

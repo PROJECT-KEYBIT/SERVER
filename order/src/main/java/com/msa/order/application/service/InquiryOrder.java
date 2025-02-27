@@ -1,7 +1,6 @@
 package com.msa.order.application.service;
 
 import com.msa.order.application.port.out.OrderOutputPort;
-import com.msa.order.application.port.in.InquiryOrder;
 import com.msa.order.domain.model.vo.OrderNo;
 import com.msa.order.framework.web.dto.OrderDTO;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +12,7 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class InquiryOrderInputPort implements InquiryOrder {
+public class InquiryOrder implements com.msa.order.application.port.in.InquiryOrder {
 
     private final OrderOutputPort orderOutputPort;
 
