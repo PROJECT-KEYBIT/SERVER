@@ -1,6 +1,6 @@
 package com.msa.order.framework.kafkaadpator;
 
-import com.msa.order.application.port.out.EventOutputPort;
+import com.msa.order.application.port.out.EventPublisher;
 import com.msa.order.domain.event.OrderCanceled;
 import com.msa.order.domain.event.OrderCompleted;
 import com.msa.order.domain.event.ShippingInfoChanged;
@@ -15,7 +15,7 @@ import org.springframework.transaction.event.TransactionalEventListener;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class OrderKafkaAdaptor implements EventOutputPort {
+public class OrderKafkaAdaptor implements EventPublisher {
 
 
     @Value("${producers.topic.order.cancel}")

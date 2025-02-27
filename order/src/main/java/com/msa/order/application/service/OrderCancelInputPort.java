@@ -1,8 +1,10 @@
 package com.msa.order.application.service;
 
-import com.msa.order.application.port.out.EventOutputPort;
+import com.msa.order.application.port.out.EventPublisher;
 import com.msa.order.application.port.out.OrderOutputPort;
 import com.msa.order.application.port.in.OrderCancel;
+import com.msa.order.common.event.Events;
+import com.msa.order.domain.event.OrderCanceled;
 import com.msa.order.domain.model.Order;
 import com.msa.order.domain.model.vo.OrderNo;
 import com.msa.order.domain.model.vo.OrderStatus;
@@ -18,7 +20,7 @@ import java.util.NoSuchElementException;
 public class OrderCancelInputPort implements OrderCancel {
 
     private final OrderOutputPort orderOutputPort;
-    private final EventOutputPort eventOutputPort;
+    private final EventPublisher eventPublisher;
 
     @Override
     public OrderStatus cancel(String orderNo) {
@@ -26,6 +28,9 @@ public class OrderCancelInputPort implements OrderCancel {
                 .orElseThrow(() -> new NoSuchElementException("없는 주문 번호입니다."));
 
         order.cancel();
+
+        eventPublisher.occurOrderCancelEvent(
+                new OrderCanceled(order.getOrderer(), order.getOrderLines().getList()));
 
         return order.getOrderStatus();
     }

@@ -19,4 +19,6 @@ public class OrderCanceled implements Serializable {
 
     private Orderer orderer;
     private List<OrderLine> orderList;
+
+
 }

@@ -4,7 +4,7 @@ import com.msa.order.domain.event.OrderCanceled;
 import com.msa.order.domain.event.OrderCompleted;
 import com.msa.order.domain.event.ShippingInfoChanged;
 
-public interface EventOutputPort {
+public interface EventPublisher {
 
     void occurOrderCancelEvent(OrderCanceled orderCanceled);
     void occurOrderCompletedEvent(OrderCompleted orderCompleted);

@@ -1,9 +1,6 @@
 package com.msa.order.domain.model;
 
-import com.msa.order.common.event.Events;
-import com.msa.order.domain.event.OrderCanceled;
 import com.msa.order.domain.event.OrderCompleted;
-import com.msa.order.domain.event.ShippingInfoChanged;
 import com.msa.order.domain.model.vo.*;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -51,10 +48,6 @@ public class Order {
     public void changeShippingInfo(ShippingInfo shippingInfo) {
         verifyNotYetShipped();
         setShippingInfo(shippingInfo);
-
-        Events.publishShippingInfoChange(
-                new ShippingInfoChanged(getOrderNo(), getShippingInfo())
-        );
     }
 
     public void prepare() {
@@ -76,10 +69,6 @@ public class Order {
     public void cancel() {
         verifyNotYetShipped();
         setOrderStatus(OrderStatus.CANCELED);
-
-        Events.publishOrderCancel(
-                new OrderCanceled(getOrderer(), getOrderLines().getList())
-        );
     }
 
     private void verifyNotYetShipped() {
