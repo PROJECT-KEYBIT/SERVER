@@ -1,7 +1,7 @@
 package com.msa.product.application.service;
 
-import com.msa.product.application.inputport.CreateProductUsecase;
-import com.msa.product.application.outputport.ProductOutputPort;
+import com.msa.product.application.port.in.CreateProductUsecase;
+import com.msa.product.application.port.out.ProductOutputPort;
 import com.msa.product.domain.product.model.Product;
 import com.msa.product.domain.product.model.vo.ProductImage;
 import com.msa.product.framework.web.dto.request.CreateProductRequest;

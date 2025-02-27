@@ -1,4 +1,4 @@
-package com.msa.product.framework.jpaadpator;
+package com.msa.product.framework.jpaadpater;
 
 import com.msa.product.domain.product.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;

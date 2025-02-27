@@ -1,4 +1,4 @@
-package com.msa.order.framework.jpaadaptor;
+package com.msa.order.framework.jpaadapter;
 
 import com.msa.order.domain.model.Order;
 import com.msa.order.domain.model.vo.OrderNo;

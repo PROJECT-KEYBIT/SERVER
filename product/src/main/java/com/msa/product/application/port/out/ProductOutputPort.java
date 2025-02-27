@@ -1,4 +1,4 @@
-package com.msa.product.application.outputport;
+package com.msa.product.application.port.out;
 
 import com.msa.product.domain.product.model.Product;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package com.msa.product.application.inputport;
+package com.msa.product.application.port.in;
 
 public interface ChangeStockUsecase {
 

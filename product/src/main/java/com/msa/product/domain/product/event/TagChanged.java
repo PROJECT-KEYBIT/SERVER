@@ -2,5 +2,5 @@ package com.msa.product.domain.product.event;
 
 import java.util.Set;
 
-public record TagUpdated(Set<String> tagNames) { }
+public record TagChanged(Set<String> tagNames) { }
 

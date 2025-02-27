@@ -1,6 +1,6 @@
-package com.msa.product.framework.jpaadpator;
+package com.msa.product.framework.jpaadpater;
 
-import com.msa.product.application.outputport.CategoryOutputPort;
+import com.msa.product.application.port.out.CategoryOutputPort;
 import com.msa.product.domain.category.model.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class CategoryJpaAdaptor implements CategoryOutputPort {
+public class CategoryJpaAdapter implements CategoryOutputPort {
 
     private final CategoryRepository repository;
 

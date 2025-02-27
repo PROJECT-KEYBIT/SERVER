@@ -1,7 +1,7 @@
 package com.msa.product.framework.web.controller;
 
-import com.msa.product.application.inputport.ClassifyCategoryUsecase;
-import com.msa.product.application.inputport.CreateCategoryUsecase;
+import com.msa.product.application.port.in.ClassifyCategoryUsecase;
+import com.msa.product.application.port.in.CreateCategoryUsecase;
 import com.msa.product.framework.web.dto.CategoryDTO;
 import com.msa.product.framework.web.dto.request.CreateCategoryRequest;
 import com.msa.product.framework.web.dto.response.CreateCategoryResponse;

@@ -1,4 +1,4 @@
-package com.msa.order.framework.jpaadaptor;
+package com.msa.order.framework.jpaadapter;
 
 import com.msa.order.application.port.out.OrderOutputPort;
 import com.msa.order.domain.model.Order;
@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class OrderJpaAdaptor implements OrderOutputPort {
+public class OrderJpaAdapter implements OrderOutputPort {
 
     private final OrderRepository orderRepository;
 

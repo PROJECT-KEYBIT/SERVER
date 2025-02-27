@@ -1,6 +1,6 @@
-package com.msa.product.framework.jpaadpator;
+package com.msa.product.framework.jpaadpater;
 
-import com.msa.product.application.outputport.ProductOutputPort;
+import com.msa.product.application.port.out.ProductOutputPort;
 import com.msa.product.domain.product.model.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class ProductJpaAdaptor implements ProductOutputPort {
+public class ProductJpaAdapter implements ProductOutputPort {
 
     private final ProductRepository repository;
 
