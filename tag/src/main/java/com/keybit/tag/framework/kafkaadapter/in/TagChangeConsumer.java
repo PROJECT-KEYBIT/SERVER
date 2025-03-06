@@ -1,4 +1,4 @@
-package com.keybit.tag.framework.kafkaadaptor.in;
+package com.keybit.tag.framework.kafkaadapter.in;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

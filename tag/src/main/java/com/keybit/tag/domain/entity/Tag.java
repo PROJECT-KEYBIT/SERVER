@@ -25,7 +25,7 @@ public class Tag {
         return new Tag(uuid.toString(), name);
     }
 
-    private Tag(String id, String name) {
+    public Tag(String id, String name) {
         this.id = id;
         this.name = name;
     }
