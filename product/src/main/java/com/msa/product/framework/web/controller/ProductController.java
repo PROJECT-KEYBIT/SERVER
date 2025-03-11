@@ -1,9 +1,6 @@
 package com.msa.product.framework.web.controller;
 
-import com.msa.product.application.port.in.ChangeProductImageUsecase;
-import com.msa.product.application.port.in.ChangeStockUsecase;
-import com.msa.product.application.port.in.ClassifyProductUsecase;
-import com.msa.product.application.port.in.CreateProductUsecase;
+import com.msa.product.application.port.in.*;
 import com.msa.product.framework.web.dto.request.ChangeProductRequest;
 import com.msa.product.framework.web.dto.request.CreateProductRequest;
 import com.msa.product.framework.web.dto.response.ChangeProductResponse;
@@ -15,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Tag(name = "[상품-API}")
 @RestController
@@ -26,6 +24,7 @@ public class ProductController {
     private final ClassifyProductUsecase classifyProductUsecase;
     private final CreateProductUsecase createProductUsecase;
     private final ChangeStockUsecase changeStockUsecase;
+    private final ChangeTagUsecase changeTagUsecase;
 
     @PostMapping
     public ResponseEntity<CreateProductResponse> createProduct(
@@ -62,5 +61,14 @@ public class ProductController {
             int stock
     ) {
         return ResponseEntity.ok(changeStockUsecase.changeStock(productNo, stock));
+    }
+
+    @PutMapping("/{productNo}/tag")
+    public ResponseEntity<String> changeTags(
+            @PathVariable String productNo,
+            String tags
+    ) {
+        changeTagUsecase.changeTags(productNo, tags);
+        return ResponseEntity.ok(tags);
     }
 }
