@@ -1,14 +1,15 @@
 package com.keybit.tag.application.service;
 
 import com.keybit.tag.application.port.in.ProductTagChangeUsecase;
+import com.keybit.tag.application.port.out.EventPublisher;
 import com.keybit.tag.application.port.out.TagOutputPort;
 import com.keybit.tag.domain.entity.Tag;
 import com.keybit.tag.domain.event.TagChanged;
+import com.keybit.tag.domain.event.TagRegistered;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 public class ProductTagChange implements ProductTagChangeUsecase {
 
     private final TagOutputPort outputPort;
+    private final EventPublisher eventPublisher;
 
     @Override
     public void productTagChanged(TagChanged tagChanged) {
@@ -31,9 +33,14 @@ public class ProductTagChange implements ProductTagChangeUsecase {
                 .map(Tag::register)
                 .collect(Collectors.toUnmodifiableSet());
 
-        if (!newlyRegisteredTags.isEmpty())
+        if (!newlyRegisteredTags.isEmpty()) {
             outputPort.saveAll(newlyRegisteredTags);
 
-        //TODO: 새로 생긴 태그 추가 이벤트 생성
+            Set<TagRegistered> tags = newlyRegisteredTags.stream()
+                    .map(tag -> new TagRegistered(tag.getId(), tag.getName()))
+                    .collect(Collectors.toUnmodifiableSet());
+
+            eventPublisher.occurTagRegisteredEvent(tags);
+        }
     }
 }
