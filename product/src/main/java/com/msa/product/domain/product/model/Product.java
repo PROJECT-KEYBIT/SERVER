@@ -135,10 +135,6 @@ public class Product {
     private void setCategories(Set<CategoryNo> categories) {
         this.categories = categories;
     }
-
-    public void updateTags(String tags) {
-        getTags().updateTags(tags);
-    }
 }
 
 
