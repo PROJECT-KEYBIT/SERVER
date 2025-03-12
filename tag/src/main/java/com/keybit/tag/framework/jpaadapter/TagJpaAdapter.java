@@ -2,7 +2,6 @@ package com.keybit.tag.framework.jpaadapter;
 
 import com.keybit.tag.application.port.out.TagOutputPort;
 import com.keybit.tag.domain.entity.Tag;
-import com.keybit.tag.framework.jdbcAdapter.TagJdbcRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +13,6 @@ import java.util.Set;
 public class TagJpaAdapter implements TagOutputPort {
 
     private final TagRepository tagRepository;
-    private final TagJdbcRepository tagJdbcRepository;
 
     @Override
     public Tag loadTagByName(String name) {
@@ -27,7 +25,7 @@ public class TagJpaAdapter implements TagOutputPort {
     }
 
     @Override
-    public void saveAll(Set<Tag> tags) {
-        tagJdbcRepository.saveAll(tags);
+    public List<Tag> saveAll(Set<Tag> tags) {
+        return tagRepository.saveAll(tags);
     }
 }

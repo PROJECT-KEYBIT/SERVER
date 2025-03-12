@@ -66,7 +66,7 @@ public class ProductController {
     @PutMapping("/{productNo}/tag")
     public ResponseEntity<String> changeTags(
             @PathVariable String productNo,
-            String tags
+            @RequestBody String tags
     ) {
         changeTagUsecase.changeTags(productNo, tags);
         return ResponseEntity.ok(tags);

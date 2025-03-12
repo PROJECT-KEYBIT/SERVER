@@ -9,5 +9,5 @@ public interface TagOutputPort {
 
     Tag loadTagByName(String name);
     List<Tag> loadTagsByNameIn(Set<String> names);
-    void saveAll(Set<Tag> tags);
+    List<Tag> saveAll(Set<Tag> tags);
 }

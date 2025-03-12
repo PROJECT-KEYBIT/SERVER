@@ -5,12 +5,14 @@ import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.UUID;
 
+@ToString
 @Getter
-@Document
+@Document(collection = "tags")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Tag {
 
