@@ -42,8 +42,7 @@ public class Product {
     private Set<CategoryNo> categories = new HashSet<>();
 
     @Getter
-    @Embedded
-    private ProductTags tags = ProductTags.empty();
+    private String tags;
 
     @Getter
     @Enumerated(EnumType.STRING)
@@ -136,9 +135,7 @@ public class Product {
         this.categories = categories;
     }
 
-    public void updateTags(String tags) {
-        getTags().updateTags(tags);
-    }
+    public void changeTags(String tags) { this.tags = tags; }
 }
 
 
