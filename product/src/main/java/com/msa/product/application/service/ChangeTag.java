@@ -28,10 +28,10 @@ public class ChangeTag implements ChangeTagUsecase {
     public void changeTags(String productNo, String tags) {
         Set<String> tagNames = parseTagNames(tags);
 
-        Product product = outputPort.loadProduct(productNo)
+/*        Product product = outputPort.loadProduct(productNo)
                 .orElseThrow(() -> new NoSuchElementException(productNo + ": 없는 상품 번호입니다."));
 
-        product.changeTags(tags);
+        product.changeTags(tags);*/
 
         tagChangeEventPublisher.occurTagChangedEvent(new TagChanged(productNo, tagNames));
     }
