@@ -3,7 +3,7 @@ package com.keybit.tag.framework.kafkaadapter.in;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.keybit.tag.application.port.in.ProductTagChangeUsecase;
-import com.keybit.tag.domain.event.TagChanged;
+import com.keybit.tag.domain.tag.event.TagChanged;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;

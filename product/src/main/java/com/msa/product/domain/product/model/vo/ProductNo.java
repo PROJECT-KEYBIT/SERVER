@@ -1,6 +1,7 @@
 package com.msa.product.domain.product.model.vo;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.Id;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
@@ -15,6 +16,7 @@ public class ProductNo implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 7435827638264974055L;
+    private static final ProductNo instance = new ProductNo();
 
     @Getter
     private String no;
@@ -23,6 +25,11 @@ public class ProductNo implements Serializable {
 
     private ProductNo(String no) {
         this.no = no;
+    }
+
+    public static ProductNo getProductNo(String no) {
+        instance.no = no;
+        return instance;
     }
 
     public static ProductNo createProductNo() {
