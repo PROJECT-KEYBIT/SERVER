@@ -10,28 +10,13 @@ import java.util.Set;
 
 @Repository
 @RequiredArgsConstructor
-public class TagJpaAdapter implements TagOutputPort {
+public class  TagJpaAdapter implements TagOutputPort {
 
     private final TagRepository tagRepository;
 
     @Override
-    public Tag loadTagByName(String name) {
-        return tagRepository.findByName(name);
-    }
-
-    @Override
     public List<Tag> loadTagsByNameIn(Set<String> names) {
         return tagRepository.findByNameIn(names);
-    }
-
-    @Override
-    public void updateAllTags(Set<Tag> tags) {
-        tagRepository.saveAll(tags);
-    }
-
-    @Override
-    public Set<Tag> loadTagsForTagsChangedInProduct(Set<String> names, String productId) {
-        return tagRepository.findByNameInAndProductIdsNotContaining(names, productId);
     }
 
     @Override

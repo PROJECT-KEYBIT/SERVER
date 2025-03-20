@@ -9,7 +9,5 @@ import java.util.Set;
 
 @Repository
 public interface TagRepository extends MongoRepository<Tag, String> {
-    Tag findByName(String name);
     List<Tag> findByNameIn(Set<String> names);
-    Set<Tag> findByNameInAndProductIdsNotContaining(Set<String> names, String productId);
 }
