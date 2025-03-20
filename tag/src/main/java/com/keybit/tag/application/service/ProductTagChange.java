@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -28,26 +29,32 @@ public class ProductTagChange implements ProductTagChangeUsecase {
 
         String productId = tagChanged.productNo();
         Set<String> tagNames = tagChanged.tagNames();
-        Set<Tag> tags = outputPort.loadTagsForTagsChangedInProduct(tagNames, productId);
+        List<Tag> tags = outputPort.loadTagsByNameIn(tagNames);
 
         // 이미 있는 태그 객체에 상품 코드 추가
         addProductIdToAlreadyExistingTags(productId, tags);
 
+        //새로운 태그 추출하기
+        Set<Tag> newTags = extractNotExistingTags(tags, tagNames, productId);
+
         // 존재하지 않는 태그에 상품 코드 추가 해 저장
-        createNewTagsAndAddProductId(productId, tagNames);
-    }
-
-    private void addProductIdToAlreadyExistingTags(String productId, Set<Tag> tags) {
-        tags.forEach(tag -> tag.addProductId(productId));
-        outputPort.updateAllTags(tags);
-    }
-
-    private void createNewTagsAndAddProductId(String productId, Set<String> tagNames) {
-        Set<Tag> newTags =
-                tagNames.stream()
-                        .map(tagName -> Tag.register(tagName, productId))
-                        .collect(Collectors.toUnmodifiableSet());
-
         outputPort.saveAll(newTags);
+    }
+
+    private void addProductIdToAlreadyExistingTags(String productId, List<Tag> tags) {
+        tags.stream()
+            .filter(tag -> !tag.getProductIds().contains(productId))
+            .forEach(tag -> tag.addProductId(productId));
+    }
+
+    private Set<Tag> extractNotExistingTags(List<Tag> tags, Set<String> tagNames, String productId) {
+        Set<String> existingTagNames = tags.stream()
+                .map(Tag::getName)
+                .collect(Collectors.toUnmodifiableSet());
+
+        return tagNames.stream()
+                       .filter(tagName -> !existingTagNames.contains(tagName))
+                       .map(tagName -> Tag.register(tagName, productId))
+                       .collect(Collectors.toUnmodifiableSet());
     }
 }
